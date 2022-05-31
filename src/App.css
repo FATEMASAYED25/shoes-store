@@ -1,38 +1,57 @@
-.App {
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Encode Sans Expanded', sans-serif;
+  overflow-x: hidden;
+}
+.font{
+  font-family: 'Sedgwick Ave', cursive;
+}
+.member{
+ 
+  margin: 5px auto;
   text-align: center;
+ }
+ .navbar-nav a{
+  margin-right: 80px;
+  font-size: 20px;
+}
+button,a{
+  text-decoration: none;
+  color:white
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.slider{
+  display: grid;
+ 
+  margin:0px auto;
+  width:90%;
+  place-items: center;
+  
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.slider-trace{
   display: flex;
-  flex-direction: column;
+  width:calc(250 * 6);
+  animation: scroll 20s linear infinite;/*make auto slider*/
+ 
+}
+.slide{
+
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 15px;
+
 }
 
-.App-link {
-  color: #61dafb;
-}
+/*make auto slider*/
+@keyframes scroll {
+  0% {
+    transform: translateX((0));
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: translateX(calc(-250px *3));
   }
 }
