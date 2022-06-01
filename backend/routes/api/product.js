@@ -23,36 +23,51 @@ const upload = multer({
             cb(null, true);
         } else {
             cb(null, false);
-            const err = new Error('Only .png, .jpg and .jpeg format allowed!')
-            err.name = 'ExtensionError'
+            const err = new Error('Only .png, .jpg and .jpeg format allowed!');
+            err.name = 'ExtensionError';
             return cb(err);
         }
     },
 });
 
-router.get('/', async (_req, res) => {
+router.get('/', async (req, res) => {
     try {
-        const products = await Product.findAll({include: 'images'})
-        res.json(products)
+        const category_id = req.query.category_id;
+        if(category_id){
+            const products = await Product.findAll(
+                {where: {category_id}},
+        )
+            return res.json(products);
+        }else{
+            const products = await Product.findAll(
+                {include: ['images']},
+            )
+            return res.json(products);
+        }
     }catch (err) {
         console.log(err)
-        res.status(500).json({ error: 'Something went wrong' })
+        res.status(500).json({ error: 'Something went wrong' });
     }
 });
 
 router.get('/:id', async (req, res) => {
     try {
-        const product = await Product.findByPk(req.params.id)
+        const product = await Product.findByPk(req.params.id,{
+            include: ['images', 'category']
+        })
+        if(product === null){
+            return res.json("Not found");
+        }
         res.json(product)
     }catch (err) {
-        console.log(err)
-        res.status(500).json({ error: 'Something went wrong' })
+        console.log(err);
+        res.status(500).json({ error: 'Something went wrong' });
     }
 });
 
 router.post('/', authAdmin, upload.array('images', 5), async (req, res) => {
     try{
-        console.log(req.files)
+        console.log(req.files);
         const product = {
             name: req.body.name,
             description: req.body.description,
@@ -60,44 +75,44 @@ router.post('/', authAdmin, upload.array('images', 5), async (req, res) => {
             quantity: req.body.quantity,
             category_id: req.body.category_id,
         }
-        const newProduct = await Product.create(product)
+        const newProduct = await Product.create(product);
         for(let i=0; i< req.files.length; i++){
-            const image = {path: req.files[i].path, product_id: newProduct.id}
-            await Image.create(image)
+            const image = {path: req.files[i].path, product_id: newProduct.id};
+            await Image.create(image);
         }
-        res.json(newProduct)
+        res.json(newProduct);
     }catch(err){
-        console.log(err)
-        res.status(500).json({ error: 'Something went wrong' })
+        console.log(err);
+        res.status(500).json({ error: 'Something went wrong' });
     }
 
 });
 
 router.put('/:id', authAdmin, async (req, res) => {
     try {
-        const {name, description, price, quantity, category_id} = req.body
-        const product = await Product.findByPk(req.params.id)
-        product.name = name
-        product.description = description
-        product.price = price
-        product.quantity = quantity
-        product.category_id = category_id
-        await product.save()
-        res.json(product) 
+        const {name, description, price, quantity, category_id} = req.body;
+        const product = await Product.findByPk(req.params.id);
+        product.name = name;
+        product.description = description;
+        product.price = price;
+        product.quantity = quantity;
+        product.category_id = category_id;
+        await product.save();
+        res.json(product);
     }catch(err){
-        console.log(err)
-        res.status(500).json({ error: 'Something went wrong' })
+        console.log(err);
+        res.status(500).json({ error: 'Something went wrong' });
     }
 });
 
 router.delete('/:id', authAdmin, async (req, res) => {
     try {
-        const product = await Product.findByPk(req.params.id)
-        await product.destroy()
-        res.json({ message: 'Product deleted!' })
+        const product = await Product.findByPk(req.params.id);
+        await product.destroy();
+        res.json({ message: 'Product deleted!' });
     }catch (err) {
-        console.log(err)
-        res.status(500).json({ error: 'Something went wrong' })
+        console.log(err);
+        res.status(500).json({ error: 'Something went wrong' });
     }
 });
 
