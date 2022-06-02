@@ -15,10 +15,8 @@ after cloning the project open the terminal and write npm start
 6/   "bootstrap": "^5.1.3",
 7/   "axios": "^0.25.0",
 
-## how to run db.json server in this project 
-open db.json folder in your code editor and write the following command:
-
-###  json-server --watch db.json
+## how to run db.json server in this project visit this website:
+https://github.com/typicode/json-server
 
 
 # shoes-store
