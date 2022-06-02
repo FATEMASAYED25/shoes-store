@@ -22,29 +22,23 @@ button,a{
   color:white
 }
 
-.slider{
-  display: grid;
- 
-  margin:0px auto;
-  width:90%;
-  place-items: center;
-  
-}
 
-.slider-trace{
+
+.slider-trace-brand{
   display: flex;
-  width:calc(250 * 6);
+
   animation: scroll 20s linear infinite;/*make auto slider*/
- 
-}
-.slide{
-
-  display: flex;
-  align-items: center;
-  padding: 15px;
-
 }
 
+.slider-brand-img{
+  margin-left:50px;
+}
+@media (max-width:1000px){
+  .slider-brand-img{
+    margin-left: none;
+  }
+
+}
 /*make auto slider*/
 @keyframes scroll {
   0% {
@@ -53,5 +47,6 @@ button,a{
   }
   100% {
     transform: translateX(calc(-250px *3));
+  
   }
 }

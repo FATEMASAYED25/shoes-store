@@ -1,61 +1,36 @@
-import React, { useState, useEffect } from 'react'
-import { Container, Card, Button, Row, Carousel,} from "react-bootstrap"
-import axios from 'axios'
+import React, { useState} from 'react'
+import { Container, Row, Carousel,Col} from "react-bootstrap"
 import img1 from "../images/1.png";
 import img2 from "../images/7.png";
 import img3 from "../images/3.png";
-import img8 from "../images/8.gif";
+import img4 from "../images/8.gif";
+import img5 from "../images/adidas brand.png";
+import img6 from "../images/nike brand.png";
+import img7 from "../images/sketcher brand.png";
+import img8 from "../images/puma prand.png";
+import Categories from '../components/Categories';
 const Home = () => {
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-
-    axios.get("http://localhost:3000/products").then((res) => {
-      setProducts(res.data)
-    }).catch(err => {
-      console.log("can't fetch data");
-    })
-
-  }, [])
-
+ 
+  const BrandsImages = [img5,img6,img7,img8,img5,img6,img7,img8];
+  const SliderImages = [img1,img2,img3,img4]
 
   return (
 <React.Fragment>
   
-<Carousel style={{ width: '100vw' ,height:"110vh" }}>
-        <Carousel.Item >
-          <img
-          
-            className="d-block w-100"
-            src={img8}
-            alt="First slide"
-          />
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <img
-            className="d-block w-100 "
-            src={img2}
-            alt="Second slide"
-          />
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={img3}
-            alt="Third slide"
-          />
-        </Carousel.Item>
-
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src={img1}
-            alt="First slide"
-          />
+<Carousel >
+  {SliderImages.map(image=>
+        <Carousel.Item 
+        className="d-block w-60 h-60"
+        >
+      
+      <img
+        className="d-block w-100"
+        alt="home images" 
+        src={image}
+        />
 
         </Carousel.Item>
+     )}
       </Carousel>
 
 
@@ -72,28 +47,27 @@ const Home = () => {
 
 
   
- 
+ <Container>
       <Row >
-      <div className="slider" >
-      <div className="slider-trace">
-      
-        {products.map(product =>
-        <div className="slide">
-          <Card key={product.id} style={{ width: '18rem' ,border:'none'}}>
-            <Card.Img variant="top" src={product.url} />
-            <Card.Body>
-              <Card.Title>{product.title}</Card.Title>
-              <Card.Text>
-             {product.id}
-              </Card.Text>
-              <Button variant="primary">buy now</Button>
-            </Card.Body>
-          </Card>
-          </div>
+    
+      <Col className="slider-trace-brand">
+       {BrandsImages.map(image => <img 
+        className="d-block w-100 "
+        alt="brands images" 
+        src={image}
+        />
+       
         )}
-        </div>
-        </div>
+        </Col> 
       </Row>
+
+      </Container>
+
+
+      <Container>
+        <Categories/>
+
+      </Container>
   
     </React.Fragment>
   )
