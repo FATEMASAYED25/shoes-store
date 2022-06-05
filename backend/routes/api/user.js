@@ -13,9 +13,9 @@ const hashPassword = (password) => {
 }
 
 
-router.get('/', authUser, async (_req, res) => {
+router.get('/', authAdmin, async (_req, res) => {
     try {
-        const users = await User.findAll({where: {role: 'user'}});
+        const users = await User.findAll();
         if(users === null){
             return res.json("Not found");
         }
