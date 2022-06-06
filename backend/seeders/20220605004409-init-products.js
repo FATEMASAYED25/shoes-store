@@ -7,6 +7,8 @@ module.exports = {
       description: 'A kitten heel is a short, slender heel',
       price: 100,
       quantity: 50,
+      rating: 0.0,
+      num_reviews: 0,
       category_id: 1,
       created_at: new Date(),
       updated_at: new Date()
@@ -16,6 +18,8 @@ module.exports = {
       description: 'shoes for women designed more to specific sport or activity.',
       price: 100,
       quantity: 50,
+      rating: 0.0,
+      num_reviews: 0,
       category_id: 1,
       created_at: new Date(),
       updated_at: new Date()
@@ -25,6 +29,8 @@ module.exports = {
       description: 'Shoes with a flexible sole and lacing closure.',
       price: 100,
       quantity: 50,
+      rating: 0.0,
+      num_reviews: 0,
       category_id: 2,
       created_at: new Date(),
       updated_at: new Date()

@@ -6,7 +6,10 @@ const { authAdmin } = require('../../middlewares/authentication');
 router.get('/', authAdmin, async (_req, res) => {
     try {
         const categories = await Category.findAll({include: 'products'})
-        res.json(categories)
+        if(categories === null){
+            return res.json("Not found");
+        }
+        res.status(200).json(categories)
     }catch (err) {
         console.log(err)
         res.status(500).json({ error: 'Something went wrong' })
@@ -19,7 +22,7 @@ router.get('/:id', authAdmin, async (req, res) => {
         if(category === null){
             return res.json("Not found")
         }
-        res.json(category)
+        res.status(200).json(category)
     }catch (err) {
         console.log(err)
         res.status(500).json({ error: 'Something went wrong' })
@@ -32,7 +35,7 @@ router.post('/', authAdmin, async (req, res) => {
             name: req.body.name
         }
         const newCategory = await Category.create(category)
-        res.json(newCategory)
+        res.status(201).json(newCategory)
     }catch(err){
         console.log(err)
         res.status(500).json({ error: 'Something went wrong' })
@@ -49,7 +52,7 @@ router.put('/:id', authAdmin, async (req, res) => {
         }
         category.name = name
         await category.save()
-        res.json(category) 
+        res.status(200).json(category) 
     }catch(err){
         console.log(err)
         res.status(500).json({ error: 'Something went wrong' })
@@ -63,7 +66,7 @@ router.delete('/:id', authAdmin, async (req, res) => {
             return res.json("Not found")
         }
         await category.destroy()
-        res.json({ message: 'category deleted!' })
+        res.status(200).json({ message: 'category deleted!' })
     }catch (err) {
         console.log(err)
         res.status(500).json({ error: 'Something went wrong' })
