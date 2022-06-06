@@ -129,18 +129,18 @@ router.delete('/:id', authAdmin, async (req, res) => {
 
 router.post('/:id/reviews', authUser, async (req, res) => {
     try{
-        const product = await Product.findByPk(req.params.id, {include: 'reviews'});
-        if(product === null){
-            return res.json("Not found");
-        };
         const review = {
             name: req.body.name,
             comment: req.body.comment,
-            user_id: req.body.user_id,
+            user_id: req.user.id,
             rating: req.body.rating,
             product_id : req.params.id
         };
         await Review.create(review);
+        const product = await Product.findByPk(req.params.id, {include: 'reviews'});
+        if(product === null){
+            return res.json("Not found");
+        };
         product.rating = product.reviews.reduce((a, c) => c.rating + a, 0) / product.reviews.length;
         product.num_reviews = product.reviews.length;
         const updata_product = await product.save();

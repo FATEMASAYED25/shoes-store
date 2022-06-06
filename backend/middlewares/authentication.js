@@ -11,6 +11,7 @@ const authAdmin = (req, res, next) => {
         if (token){
             const decode = jwt.verify(token, process.env.JWT_SECRET);
             if (decode.role === 'admin'){
+                req.user = decode
                 next()
             } else {
                 res.status(401);
@@ -34,6 +35,7 @@ const authUser = (req, res, next) => {
         if (token){
             const decode = jwt.verify(token, process.env.JWT_SECRET);
             if (decode.role === 'user'){
+                req.user = decode
                 next()
             } else {
                 res.status(401);
