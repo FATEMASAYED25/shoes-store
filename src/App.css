@@ -1,52 +1,62 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Encode Sans Expanded', sans-serif;
+  font-family: "Encode Sans Expanded", sans-serif;
   overflow-x: hidden;
 }
-.font{
-  font-family: 'Sedgwick Ave', cursive;
+.font {
+  font-family: "Sedgwick Ave", cursive;
 }
-.member{
- 
+.member {
   margin: 5px auto;
   text-align: center;
- }
- .navbar-nav a{
+}
+.navbar-nav a {
   margin-right: 80px;
   font-size: 20px;
 }
-button,a{
+button,
+a {
   text-decoration: none;
-  color:white
+  color: white;
 }
 
-
-
-.slider-trace-brand{
+.slider-trace-brand {
   display: flex;
 
-  animation: scroll 20s linear infinite;/*make auto slider*/
+  animation: scroll 20s linear infinite; /*make auto slider*/
 }
 
-.slider-brand-img{
-  margin-left:50px;
+.slider-brand-img {
+  margin-left: 50px;
 }
-@media (max-width:1000px){
-  .slider-brand-img{
+@media (max-width: 1000px) {
+  .slider-brand-img {
     margin-left: none;
   }
-
 }
 /*make auto slider*/
 @keyframes scroll {
   0% {
     transform: translateX((0));
-
   }
   100% {
-    transform: translateX(calc(-250px *3));
-  
+    transform: translateX(calc(-250px * 3));
   }
+}
+
+/* Categories Style */
+.category {
+  padding: 2rem 0;
+}
+
+.category .react-multi-carousel-track {
+  margin-right: -0.5rem;
+  margin-left: -0.5rem;
+}
+
+.category .card {
+  border: none;
+  padding: 0.5rem;
 }

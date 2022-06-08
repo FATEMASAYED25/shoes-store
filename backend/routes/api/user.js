@@ -13,13 +13,13 @@ const hashPassword = (password) => {
 }
 
 
-router.get('/', authUser, async (_req, res) => {
+router.get('/', authAdmin, async (_req, res) => {
     try {
-        const users = await User.findAll({where: {role: 'user'}});
+        const users = await User.findAll();
         if(users === null){
             return res.json("Not found");
         }
-        res.json(users);
+        res.status(200).json(users);
     }catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
@@ -32,7 +32,7 @@ router.get('/:id', authUser, async (req, res) => {
         if(user === null){
             return res.json("Not found");
         }
-        res.json(user);
+        res.status(200).json(user);
     }catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
@@ -53,7 +53,7 @@ router.post('/', authAdmin, async (req, res) => {
             city: req.body.city,
         }
         const newUser = await User.create(user);
-        res.json(newUser);
+        res.status(201).json(newUser);
     }catch(err){
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
@@ -76,7 +76,7 @@ router.put('/:id', authUser, async (req, res) => {
         user.address = address;
         user.city = city;
         await user.save();
-        res.json(user) ;
+        res.status(200).json(user) ;
     }catch(err){
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
@@ -90,7 +90,7 @@ router.delete('/:id', authAdmin, async (req, res) => {
             return res.json("Not found");
         }
         await user.destroy()
-        res.json({ message: 'User deleted!' });
+        res.status(200).json({ message: 'User deleted!' });
     }catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
@@ -138,7 +138,7 @@ router.post('/register', async (req, res) => {
             city: req.body.city,
         }
         const newUser = await User.create(user);
-        res.json(newUser);
+        res.status(201).json(newUser);
     }catch(err){
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
