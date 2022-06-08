@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Card, Button } from "react-bootstrap";
 import axios from "axios";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 const Categories = () => {
   const [products, setProducts] = useState([]);
@@ -17,16 +19,39 @@ const Categories = () => {
         console.error(err);
       });
   }, []);
+  const responsive = {
+    extraLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 1200 },
+      items: 7,
+    },
+    desktop: {
+      breakpoint: { max: 1200, min: 992 },
+      items: 5,
+    },
+    tablet: {
+      breakpoint: { max: 992, min: 768 },
+      items: 3,
+    },
+    mobile: {
+      breakpoint: { max: 768, min: 576 },
+      items: 2,
+    },
+    smallScreen: {
+      breakpoint: { max: 576, min: 0 },
+      items: 1,
+    },
+  };
   return (
     <React.Fragment>
       {categories.map((category) => (
         <Row key={category.id} className="category">
           <h2>{category.name}</h2>
-          {products
-            .filter((product) => product.category_id === category.id)
-            .map((product) => (
-              <Col sm={6} md={4} lg={3} key={product.id}>
-                <Card style={{ border: "none" }}>
+          <Carousel responsive={responsive}>
+            {products
+              .filter((product) => product.category_id === category.id)
+              .map((product) => (
+                <Card key={product.id}>
                   <Card.Img variant="top" src={product.url} />
                   <Card.Body>
                     <Card.Title>{product.title}</Card.Title>
@@ -34,8 +59,8 @@ const Categories = () => {
                     <Button variant="primary">buy now</Button>
                   </Card.Body>
                 </Card>
-              </Col>
-            ))}
+              ))}
+          </Carousel>
         </Row>
       ))}
     </React.Fragment>

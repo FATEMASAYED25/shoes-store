@@ -50,3 +50,13 @@ a {
 .category {
   padding: 2rem 0;
 }
+
+.category .react-multi-carousel-track {
+  margin-right: -0.5rem;
+  margin-left: -0.5rem;
+}
+
+.category .card {
+  border: none;
+  padding: 0.5rem;
+}
