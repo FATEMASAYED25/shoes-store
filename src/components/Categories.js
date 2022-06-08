@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Card, Button, Row, Carousel, Col } from "react-bootstrap";
+import { Row, Col, Card, Button } from "react-bootstrap";
 import axios from "axios";
 
 const Categories = () => {
@@ -20,7 +20,7 @@ const Categories = () => {
   return (
     <React.Fragment>
       {categories.map((category) => (
-        <Row key={category.id}>
+        <Row key={category.id} className="category">
           <h2>{category.name}</h2>
           {products
             .filter((product) => product.category_id === category.id)
