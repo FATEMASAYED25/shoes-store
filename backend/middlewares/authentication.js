@@ -10,8 +10,8 @@ const authAdmin = (req, res, next) => {
         const token = authorizationHeader.split(' ')[1];
         if (token){
             const decode = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = decode
             if (decode.role === 'admin'){
-                req.user = decode
                 next()
             } else {
                 res.status(401);
@@ -34,8 +34,8 @@ const authUser = (req, res, next) => {
         const token = authorizationHeader.split(' ')[1];
         if (token){
             const decode = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = decode
             if (decode.role === 'user'){
-                req.user = decode
                 next()
             } else {
                 res.status(401);

@@ -37,16 +37,16 @@ router.get('/', async (req, res) => {
             const products = await Product.findAll(
                 {where: {category_id}},
             );   
-            if(products === null){
-                return res.json("Not found");
+            if(!products){
+                return res.json("Products Not Found");
             };
             return res.status(200).json(products);
         }else{
             const products = await Product.findAll(
                 {include: ['images', 'reviews']},
             );
-            if(products === null){
-                return res.json("Not found");
+            if(!products){
+                return res.json("Products Not Found");
             };
             return res.status(200).json(products);
         };
@@ -61,8 +61,8 @@ router.get('/:id', async (req, res) => {
         const product = await Product.findByPk(req.params.id,{
             include: ['images', 'category', 'reviews']
         });
-        if(product === null){
-            return res.json("Not found");
+        if(!product){
+            return res.json("Product Not Found");
         };
         res.status(200).json(product);
     }catch (err) {
@@ -97,8 +97,8 @@ router.put('/:id', authAdmin, async (req, res) => {
     try {
         const {name, description, price, quantity, category_id} = req.body;
         const product = await Product.findByPk(req.params.id);
-        if(product === null){
-            return res.json("Not found");
+        if(!product){
+            return res.json("Product Not Found");
         };
         product.name = name;
         product.description = description;
@@ -116,8 +116,8 @@ router.put('/:id', authAdmin, async (req, res) => {
 router.delete('/:id', authAdmin, async (req, res) => {
     try {
         const product = await Product.findByPk(req.params.id);
-        if(product === null){
-            return res.json("Not found");
+        if(!product){
+            return res.json("Product Not Found");
         };
         await product.destroy();
         res.status(200).json({ message: 'Product deleted!' });
@@ -138,8 +138,8 @@ router.post('/:id/reviews', authUser, async (req, res) => {
         };
         await Review.create(review);
         const product = await Product.findByPk(req.params.id, {include: 'reviews'});
-        if(product === null){
-            return res.json("Not found");
+        if(!product){
+            return res.json("Product Not Found");
         };
         product.rating = product.reviews.reduce((a, c) => c.rating + a, 0) / product.reviews.length;
         product.num_reviews = product.reviews.length;

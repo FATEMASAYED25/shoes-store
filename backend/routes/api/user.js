@@ -15,8 +15,10 @@ const hashPassword = (password) => {
 
 router.get('/', authAdmin, async (_req, res) => {
     try {
-        const users = await User.findAll();
-        if(users === null){
+        const users = await User.findAll({
+            attributes: { exclude: ['password'] }
+        });
+        if(!users){
             return res.json("Not found");
         }
         res.status(200).json(users);
@@ -28,8 +30,10 @@ router.get('/', authAdmin, async (_req, res) => {
 
 router.get('/:id', authUser, async (req, res) => {
     try {
-        const user = await User.findByPk(req.params.id);
-        if(user === null){
+        const user = await User.findByPk(req.params.id, {
+            attributes: { exclude: ['password'] }
+        });
+        if(!user){
             return res.json("Not found");
         }
         res.status(200).json(user);
@@ -65,7 +69,7 @@ router.put('/:id', authUser, async (req, res) => {
     try {
         const {username, email, first_name, last_name, phone, address, city} = req.body;
         const user = await User.findByPk(req.params.id);
-        if(user === null){
+        if(!user){
             return res.json("Not found");
         }
         user.username = username;
@@ -86,7 +90,7 @@ router.put('/:id', authUser, async (req, res) => {
 router.delete('/:id', authAdmin, async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
-        if(user === null){
+        if(!user){
             return res.json("Not found");
         }
         await user.destroy()

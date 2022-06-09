@@ -6,8 +6,8 @@ const { authAdmin } = require('../../middlewares/authentication');
 router.get('/', authAdmin, async (_req, res) => {
     try {
         const categories = await Category.findAll({include: 'products'})
-        if(categories === null){
-            return res.json("Not found");
+        if(!categories){
+            return res.json("Categories Not Found");
         }
         res.status(200).json(categories)
     }catch (err) {
@@ -19,8 +19,8 @@ router.get('/', authAdmin, async (_req, res) => {
 router.get('/:id', authAdmin, async (req, res) => {
     try {
         const category = await Category.findByPk(req.params.id)
-        if(category === null){
-            return res.json("Not found")
+        if(!category){
+            return res.json("Category Not Found")
         }
         res.status(200).json(category)
     }catch (err) {
@@ -47,8 +47,8 @@ router.put('/:id', authAdmin, async (req, res) => {
     try {
         const  name  = req.body.name
         const category = await Category.findByPk(req.params.id)
-        if(category === null){
-            return res.json("Not found")
+        if(!category){
+            return res.json("Category Not Found")
         }
         category.name = name
         await category.save()
@@ -62,8 +62,8 @@ router.put('/:id', authAdmin, async (req, res) => {
 router.delete('/:id', authAdmin, async (req, res) => {
     try {
         const category = await Category.findByPk(req.params.id)
-        if(category === null){
-            return res.json("Not found")
+        if(!category){
+            return res.json("Category Not Found")
         }
         await category.destroy()
         res.status(200).json({ message: 'category deleted!' })
