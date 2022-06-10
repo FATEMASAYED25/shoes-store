@@ -8,7 +8,7 @@ import img5 from "../images/adidas brand.png";
 import img6 from "../images/nike brand.png";
 import img7 from "../images/sketcher brand.png";
 import img8 from "../images/puma prand.png";
-import Categories from "../components/Categories";
+import Categories from "../components/Categories"
 const Home = () => {
   const BrandsImages = [img5, img6, img7, img8, img5, img6, img7, img8];
   const SliderImages = [img1, img2, img3, img4];

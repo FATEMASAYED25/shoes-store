@@ -1,8 +1,11 @@
 import React,{useState} from 'react'
+import { Routes,Route } from 'react-router-dom';
 import Home from './pages/Home'
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Footer from './components/Footer';
 import Navigation from "./components/Navigation" ;
+import Product from "./pages/Product"
+import Categories from './components/Categories';
 function App() {
 
   
@@ -12,7 +15,16 @@ function App() {
     
   <React.Fragment>
     <Navigation />
-    <Home/>
+    <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/home" element={<Home />} />
+    <Route path="/Product/:id" element={<Product/>} />
+    <Route path="/Categories" element={<Categories/>} />
+   
+
+
+    </Routes>
+   
     <Footer/>
 
   </React.Fragment>
