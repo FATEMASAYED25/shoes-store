@@ -12,15 +12,17 @@ const Categories = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api")
+      .get("https://backende-commerc.herokuapp.com/api/products")
       .then((res) => {
-        setProducts(res.data.products);
-        setCategories(res.data.categories);
+        setProducts(res.data);
+      
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
+
+  console.log(products);
   const responsive = {
     extraLargeDesktop: {
       // the naming can be any, depends on you.
@@ -45,17 +47,18 @@ const Categories = () => {
     },
   };
   return (
+
+  
+    
     <React.Fragment>
-      {categories.map((category) => (
-        <Row key={category.id} className="category">
-          <h2>{category.name}</h2>
+        <Row  className="category">
+        
           <Carousel responsive={responsive}>
-            {products
-              .filter((product) => product.category_id === category.id)
-              .map((product) => (
+            {products.map((product) => (
+              
                 <Link to={`/product/${product.id}`}>
                 <Card key={product.id}>
-                  <Card.Img variant="top" src={product.url} />
+                  <Card.Img variant="top" src={product.images.map(img => (img.path)   )} alt="hello world" />
                   <Card.Body>
                     <Card.Title>{product.name}</Card.Title>
                     <Card.Text>{product.id}</Card.Text>
@@ -66,8 +69,9 @@ const Categories = () => {
               ))}
           </Carousel>
         </Row>
-      ))}
+    
     </React.Fragment>
+    
   );
 };
 

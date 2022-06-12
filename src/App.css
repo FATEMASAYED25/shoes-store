@@ -60,3 +60,12 @@ a {
   border: none;
   padding: 0.5rem;
 }
+.product-description{
+
+  border-left: 1px rgba(0, 0, 0, 0.111) solid;
+}
+.product-description p{
+  border-bottom: 1px rgba(0, 0, 0, 0.111) solid;
+
+  padding-bottom: 10px;
+}

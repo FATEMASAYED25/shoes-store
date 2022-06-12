@@ -1,43 +1,79 @@
 import React from 'react'
-import { Container,Col ,Row } from 'react-bootstrap'
-import { useLocation } from 'react-router-dom'
+import { Container,Col ,Row,Button} from 'react-bootstrap'
+import { useLocation ,Link } from 'react-router-dom'
 import { useState ,useEffect } from 'react'
+import { FaStar,FaHome } from "react-icons/fa";
+import { FcApproval , FcInTransit,FcHome,FcUndo} from "react-icons/fc";
 import axios from 'axios'
 
 const Product = () => {
 
 const location=useLocation()
-const Id= location.pathname.split("/")[2];
-console.log(Id);
+const id= location.pathname.split("/")[2];
+console.log(id);
 
-const [products, setProducts] = useState([]);
+const [product, setProduct] = useState({});
 
 useEffect(() => {
   axios
-    .get("http://localhost:3000/api")
+    .get("https://backende-commerc.herokuapp.com/api/products/" + id)
     .then((res) => {
-      setProducts(res.data.products);
+     setProduct(res.data);
      
     })
     .catch((err) => {
-      console.error(err);
+      alert("there is no product")
     });
-}, []);
+}, [id]);
 
-console.log(products);
+console.log(product);
 
   return (
   <Container>
 
-{products.filter( product => product.id === Id)
-              .map(product => (
+
                 
-                <Row key={product.id}>
-              <Col>hellloooo{product.name}</Col>
-              <Col>moijijio{product.description}</Col>
-              <Col>mkovmipanri{product.name}</Col>
+                <Row style={{
+            margin: "auto",
+            padding:"20px",
+            justifyContent:"center",
+            alignItems:"center"
+          }}>
+              <Col xs={12} md={4}  > 
+               <img
+                className="d-block w-100"
+                src="uploads/sport-shoes-men.jpeg"
+                 alt="Third slide"
+               /> 
+               </Col>
+              <Col xs={12} md={4} className="py-4">
+              <h1>{product.name}</h1>
+              <h4>description:{product.description}</h4>
+              <h5>quantity: {product.quantity}</h5>
+              <div     style={{
+                 
+                 backgroundColor: "green",
+                  textAlign:"center",
+                  width:"110px",
+                  padding:"0px 1px ",
+                  fontSize:"12px",
+                  fontWeight:"bold",
+                  letterSpacing:"1px",
+                }}>
+              <p style={{color: "white"}} > Rating is : {product.rating} <FaStar color='white'/> </p>
+
+              </div>
+              <Button className="my-2" variant="primary"><Link to={`/ShoppingCart/${product.id}`}></Link>add to shopping card</Button>
+              </Col>
+              <Col className='product-description' xs={12} md={4}>
+              <p> <FcUndo/> you can return the product if it has any issues </p>
+              <p><FcApproval/> product has one year garentee </p>
+              <p> <FcHome/> the buyer is shoes store </p>
+              <p><FcInTransit/> delivery in 2 days</p>
+              
+              </Col>
               </Row>
-              ))}
+       
    
 
   </Container>
