@@ -41,7 +41,7 @@ console.log(product);
           }}>
               <Col xs={12} md={4}  > 
               {product.images.map(img => (
-                  <Card.Img variant="top" src={`https://backende-commerc.herokuapp.com/${img.path}`} alt="hello world" />
+                  <Card.Img variant="top" src={img.path} alt="hello world" />
                   ))}
                </Col>
               <Col xs={12} md={4} className="py-4">
