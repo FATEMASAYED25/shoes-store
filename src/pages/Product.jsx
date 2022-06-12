@@ -63,6 +63,7 @@ console.log(product);
               <p style={{color: "white"}} > Rating is : {product.rating} <FaStar color='white'/> </p>
 
               </div>
+              <p>after the visitor pressing on the  add to shoppingcart the website order from the visitor to registrate  on the website </p>
               <Link to={`/ShoppingCart/${product.id}`}><Button className="my-2" variant="primary">add to shopping card</Button></Link>
               </Col>
               <Col className='product-description' xs={12} md={4}>

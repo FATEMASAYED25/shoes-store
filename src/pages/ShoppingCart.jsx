@@ -42,7 +42,10 @@ console.log(product);
 
     </div>
 </Col>
-<Col xs={12} md={8}></Col>
+<Col xs={12} md={8}>
+
+the list of products that the user add to shopping card must goes here 
+</Col>
 
 </Row>
 
