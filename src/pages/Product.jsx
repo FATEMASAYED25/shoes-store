@@ -63,7 +63,7 @@ console.log(product);
               <p style={{color: "white"}} > Rating is : {product.rating} <FaStar color='white'/> </p>
 
               </div>
-              <Button className="my-2" variant="primary"><Link to={`/ShoppingCart/${product.id}`}></Link>add to shopping card</Button>
+              <Link to={`/ShoppingCart/${product.id}`}><Button className="my-2" variant="primary">add to shopping card</Button></Link>
               </Col>
               <Col className='product-description' xs={12} md={4}>
               <p> <FcUndo/> you can return the product if it has any issues </p>

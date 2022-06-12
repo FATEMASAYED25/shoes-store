@@ -59,6 +59,8 @@ a {
 .category .card {
   border: none;
   padding: 0.5rem;
+  background-color: aqua;
+  margin-left: 10px;
 }
 .product-description{
 
