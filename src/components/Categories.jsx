@@ -58,7 +58,9 @@ const Categories = () => {
               
                 <Link to={`/product/${product.id}`}>
                 <Card key={product.id}>
-                  <Card.Img variant="top" src={product.images.map(img => (img.path)   )} alt="hello world" />
+                  {product.images.map(img => (
+                  <Card.Img variant="top" src={`https://backende-commerc.herokuapp.com/${img.path}`} alt="hello world" />
+                  ))}
                   <Card.Body>
                     <Card.Title>{product.name}</Card.Title>
                     <Card.Text>{product.id}</Card.Text>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container,Col ,Row,Button} from 'react-bootstrap'
+import { Container,Col ,Row,Button,Card} from 'react-bootstrap'
 import { useLocation ,Link } from 'react-router-dom'
 import { useState ,useEffect } from 'react'
 import { FaStar,FaHome } from "react-icons/fa";
@@ -40,11 +40,9 @@ console.log(product);
             alignItems:"center"
           }}>
               <Col xs={12} md={4}  > 
-               <img
-                className="d-block w-100"
-                src="uploads/sport-shoes-men.jpeg"
-                 alt="Third slide"
-               /> 
+              {product.images.map(img => (
+                  <Card.Img variant="top" src={`https://backende-commerc.herokuapp.com/${img.path}`} alt="hello world" />
+                  ))}
                </Col>
               <Col xs={12} md={4} className="py-4">
               <h1>{product.name}</h1>
