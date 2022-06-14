@@ -1,7 +1,7 @@
 const dotenv = require('dotenv')
 
 dotenv.config()
-const stripe = require('stripe')(process.env.SECRET_KEY);
+const stripe = require('stripe')(process.env.secret_key);
 
 const createToken = async (card_data) => {
     let token = {};
@@ -27,14 +27,14 @@ const createToken = async (card_data) => {
     return token;
 }
 
-const createCharge = async (token_id, amount, name) => {
+const createCharge = async (token_id, amount) => {
     let charge = {};
     try {
         charge = await stripe.charges.create({
             amount: amount,
             currency: 'usd',
             source: token_id,
-            description: name
+            description: 'My first payment'
         });
     } catch (error) {
         charge.error = error.message;

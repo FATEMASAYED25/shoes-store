@@ -3,13 +3,15 @@ import { NavLink, Link } from "react-router-dom";
 import { Navbar, Container, Nav, Form, FormControl, Button, Row, Col ,Image} from 'react-bootstrap';
 import {FaShoppingCart} from 'react-icons/fa';
 import img4 from "../images/4.png";
+import {useCart} from "react-use-cart";
 const Navigation = () => {
+  const {items}= useCart()
   return (
     <React.Fragment>
       <Container fluid >
         <Row className="d-flex justify-content-end align-items-center">
 
-          <Col   md={1} xs={3} className="mx-2 " ><Link to="#">
+          <Col   md={1} xs={3} className="mx-2 " ><Link to="/home">
              <Image 
               src={img4} 
               className="img-fluid"
@@ -30,7 +32,7 @@ const Navigation = () => {
             </Col>
           <Col className="d-flex justify-content-around" >
           
-           <Link  style={{ color: 'black'}} to="#"><FaShoppingCart size="27px" /> shopping card </Link>
+           <Link  style={{ color: 'black'}} to="/Cart"><FaShoppingCart size="27px" /> {items.length} </Link>
            <Button className="mx-2" variant="outline-success">sign up </Button>
            </Col>
 
@@ -45,9 +47,9 @@ const Navigation = () => {
               <NavLink to="/home">Home</NavLink>
               <NavLink to="/About">about us</NavLink>
               <NavLink to="/Services">services</NavLink>
-              <NavLink to="/Admin">Admin</NavLink>
-              <NavLink to="/Admin">Admin</NavLink>
-              <NavLink to="/Admin">Admin</NavLink>
+              <NavLink to="/Help">Help</NavLink>
+              <NavLink to="/Contact">Contact</NavLink>
+              <NavLink to="/News">News</NavLink>
             </Nav>
           </Navbar.Collapse>
         </Container>

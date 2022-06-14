@@ -3,13 +3,12 @@ import axios from 'axios'
 import { useLocation ,Link } from 'react-router-dom'
 import React, { useState ,useEffect } from 'react'
 import { Container,Col,Row, Button } from 'react-bootstrap'
-
+import {useCart} from "react-use-cart";
 
 const ShoppingCart = () => {
-    
+    const {addItem}=useCart();
 const location=useLocation()
 const id= location.pathname.split("/")[2];
-console.log(id);
 
 const [product, setProduct] = useState({});
 
@@ -25,7 +24,6 @@ useEffect(() => {
     });
 }, [id]);
 
-console.log(product);
   return (
 <Container>
 <Row className='my-4'>
@@ -37,7 +35,7 @@ console.log(product);
  <p>the delivery time within two dayes</p>
  <p>the total goods are : </p>
  <p>delivery is free</p>
- <Button className="my-2" variant="primary" >order now </Button>
+ <Button className="my-2" variant="primary" onClick={()=>{addItem(product)}} >order now </Button>
 
 
     </div>

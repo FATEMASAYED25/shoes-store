@@ -32,15 +32,16 @@ class Footer extends Component {
 
         <Row className='p-4' style={{ background: "rgb(148 108 221)" }}>
           <Col xs={6} md={3}>
-            <ul className='pt-4'>about us
-              <li> <NavLink to="/">our stores adresses</NavLink></li>
-              <li><NavLink to="/Services">our team</NavLink></li>
-              <li><NavLink to="/Services">news</NavLink></li>
+            <ul className='pt-4'>
+              <li><NavLink to="/About">About us</NavLink></li>
+              <li> <NavLink to="/Adress">our stores adresses</NavLink></li>
+              <li><NavLink to="/Team">our team</NavLink></li>
+              <li><NavLink to="/News">news</NavLink></li>
             </ul>
           </Col>
 
           <Col xs={6} md={3}>
-            <ul className='pt-4'>products
+            <ul className='pt-4'>
               <li> <NavLink to="/">women shoes</NavLink></li>
               <li><NavLink to="/Services">men shoes</NavLink></li>
               <li><NavLink to="/SignUp">kids shoes</NavLink></li>
@@ -48,9 +49,10 @@ class Footer extends Component {
           </Col>
 
           <Col xs={6} md={3}>
-            <ul className='pt-4'>get help
-              <li> <NavLink to="/">contact us</NavLink></li>
-              <li><NavLink to="/Services">returns</NavLink></li>
+            <ul className='pt-4'>
+            <li> <NavLink to="/Help">Help</NavLink></li>
+            <li> <NavLink to="/Contact">contact us</NavLink></li>
+              <li><NavLink to="/Returns">returns</NavLink></li>
     
             </ul>
           </Col>

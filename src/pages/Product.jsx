@@ -11,7 +11,6 @@ const Product = () => {
 
 const location=useLocation()
 const id= location.pathname.split("/")[2];
-console.log(id);
 
 const [product, setProduct] = useState({});
 
@@ -27,7 +26,6 @@ useEffect(() => {
     });
 }, [id]);
 
-console.log(product);
 
   return (
   <Container>

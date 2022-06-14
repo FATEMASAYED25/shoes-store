@@ -7,6 +7,16 @@ import Navigation from "./components/Navigation" ;
 import Product from "./pages/Product"
 import Categories from './components/Categories';
 import ShoppingCart from './pages/ShoppingCart';
+import Cart from './pages/Cart';
+import Help from './pages/Team/Help';
+import Contact from './pages/Team/Contact';
+import Adress from './pages/Team/Adress';
+import News from './pages/Team/News';
+import Returns from './pages/Team/Returns';
+import Services from './pages/Team/Services';
+import About from './pages/About';
+import Team from './pages/Team/Team';
+
 function App() {
 
   
@@ -19,6 +29,17 @@ function App() {
     <Routes>
     <Route path="/" element={<Home />} />
     <Route path="/home" element={<Home />} />
+    <Route path="/Contact" element={<Contact />} />
+    <Route path="/Adress" element={<Adress />} />
+    <Route path="/News" element={<News />} />
+    <Route path="/Help" element={<Help />} />
+    <Route path="/Team" element={<Team />} />
+    <Route path="/Services" element={<Services />} />
+    <Route path="/Returns" element={<Returns />} />
+    <Route path="/About" element={<About />} />
+
+
+    <Route path="/Cart" element={<Cart />} />
     <Route path="/Product/:id" element={<Product/>} />
     <Route path="/Categories" element={<Categories/>} />
     <Route path="/ShoppingCart/:id" element={<ShoppingCart/>} />

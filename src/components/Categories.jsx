@@ -27,8 +27,6 @@ const Categories = () => {
 
  
 
-  console.log(products);
-  console.log(categories);
   const responsive = {
     extraLargeDesktop: {
       // the naming can be any, depends on you.
