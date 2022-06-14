@@ -2,11 +2,12 @@ const router = require('express').Router();
 const { Order, Order_item, Product } = require('../../models');
 const { authAdmin, authUser } = require('../../middlewares/authentication');
 const { createCharge, createToken } = require('../../middlewares/payment');
+const sendEmail = require('../../service/mail');
 
 
 router.get('/', authAdmin, async (_req, res) => {
     try {
-        const orders = await Order.findAll({include: ['orders']})
+        const orders = await Order.findAll({include: ['products']})
         if(!orders){
             return res.json("Not found");
         }
@@ -23,7 +24,7 @@ router.get('/mine', authUser, async (req, res) => {
             where: {
                 user_id: req.user.id
             },
-            include: ['orders']
+            include: ['products']
         })
         if(!orders){
             return res.json("Not found")
@@ -66,7 +67,7 @@ router.post('/', authUser, async (req, res) => {
 
 });
 
-router.put('/:id/payment', async (req, res) => {
+router.put('/:id/payment', authUser, async (req, res) => {
     try {
         let order = await Order.findByPk(req.params.id,{
             include: ['products']
@@ -92,12 +93,17 @@ router.put('/:id/payment', async (req, res) => {
         if (!token.id) {
             return res.status(404).json("payment failed2");
         }
-        const charge = await createCharge(token.id, price*100);
+        const charge = await createCharge(token.id, price*100, order.order_name);
         console.log(charge)
         if (charge && charge.status === 'succeeded') { 
             order.is_paid = true;
             order.paid_at = Date.now();
             order = await order.save();
+            sendEmail({
+                to: req.user.email,
+                subject: `order no. ${order.id}`,
+                text: `Dear Customer \n\nYou have successfully placed an order with name of ${order.order_name}\n\ntotal price ${price}$.`
+            })
             return res.status(201).json({ message: 'Order Paid', order})
         }else {
             return res.status(404).json("payment failed");
@@ -115,6 +121,9 @@ router.post('/:id/products', authUser, async (req, res) => {
             return res.json("Order Not Found")
         }
         const product = await Product.findByPk(req.body.product_id)
+        if(!product){
+            return res.json(" Not Found")
+        }
         const add_product = {
             name: req.body.name,
             order_id: req.params.id,
