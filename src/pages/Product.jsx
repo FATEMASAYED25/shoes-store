@@ -42,11 +42,13 @@ console.log(product);
           }}>
               <Col xs={12} md={4}  > 
 
+
             <Carousel fade>
             {product.images?.map(img => (
             <Carousel.Item className="d-block w-60 h-60" key={img.id}>
             <img className="d-block w-100" alt="home images" src={`https://backende-commerc.herokuapp.com/${img.path}`} />
              </Carousel.Item>
+
                   ))}
                   
                </Carousel>
