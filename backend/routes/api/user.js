@@ -118,8 +118,9 @@ router.post('/login', async (req, res) => {
                     process.env.JWT_SECRET
                 )
                 return res.json({
-                    access_token: token,
+                    token: token,
                     token_type: 'Bearer',
+                    role: user.role
                 });
             }
         }
