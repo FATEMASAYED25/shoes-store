@@ -15,9 +15,9 @@ const Home = () => {
 
   return (
     <React.Fragment>
-      <Carousel>
-        {SliderImages.map((image, key) => (
-          <Carousel.Item className="d-block w-60 h-60" key={key}>
+      <Carousel fade>
+        {SliderImages.map((image, index) => (
+          <Carousel.Item interval={1000} className="d-block w-60 h-60" key={index}>
             <img className="d-block w-100" alt="home images" src={image} />
           </Carousel.Item>
         ))}
@@ -51,7 +51,7 @@ const Home = () => {
         </Row>
       </Container>
 
-      <Container>
+      <Container fluid>
         <Categories />
       </Container>
     </React.Fragment>

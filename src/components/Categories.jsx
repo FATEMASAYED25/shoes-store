@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Row, Card, Button } from "react-bootstrap";
+import { Row, Card, Button,Col} from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+
 //fetch the categories data and products data 
 const Categories = () => {
   const [products, setProducts] = useState([]);
@@ -17,12 +17,18 @@ const Categories = () => {
         setProducts(res.data);
       
       })
-      .catch((err) => {
-        console.error(err);
-      });
+      axios
+      .get("https://backende-commerc.herokuapp.com/api/categories")
+      .then((res) => {
+        setCategories(res.data);
+      
+      })
   }, []);
 
+ 
+
   console.log(products);
+  console.log(categories);
   const responsive = {
     extraLargeDesktop: {
       // the naming can be any, depends on you.
@@ -46,33 +52,37 @@ const Categories = () => {
       items: 1,
     },
   };
+
   return (
 
   
     
     <React.Fragment>
-        <Row  className="category">
-        
-          <Carousel responsive={responsive}>
-            {products.map((product) => (
-              
-                <Link to={`/product/${product.id}`}>
-                <Card key={product.id}>
-                  {product.images.map(img => (
-                  <Card.Img variant="top" src={`https://backende-commerc.herokuapp.com/${img.path}`} alt="hello world" />
-                  ))}
-                  <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>{product.id}</Card.Text>
-                    <Button variant="primary">buy now</Button>
-                  </Card.Body>
-                </Card>
-                </Link>
-              ))}
-          </Carousel>
-        </Row>
-    
-    </React.Fragment>
+    {categories.map((category) => (
+      <Row key={category.id} className="category">
+        <h2 >{category.name}</h2>
+        <Carousel responsive={responsive}>
+          {products
+            .filter((product) => product.category_id === category.id)
+            .map((product) => (
+            
+              <Link to={`/product/${product.id}`}>
+              <Card key={product.id}>
+                <Card.Img variant="top" src={`https://backende-commerc.herokuapp.com/${product.images[0].path}`} alt="hello world" />
+                <Card.Body>
+                  <Card.Title>{product.name}</Card.Title>
+                  <Card.Text>{product.price}</Card.Text>
+                  <Button variant="primary">buy now</Button>
+                </Card.Body>
+              </Card>
+              </Link>
+           
+            ))}
+           
+           </Carousel>
+      </Row>
+    ))}
+  </React.Fragment>
     
   );
 };

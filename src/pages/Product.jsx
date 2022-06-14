@@ -1,9 +1,10 @@
 import React from 'react'
-import { Container,Col ,Row,Button,Card} from 'react-bootstrap'
+import { Container,Col ,Row,Button,Card, Carousel} from 'react-bootstrap'
 import { useLocation ,Link } from 'react-router-dom'
 import { useState ,useEffect } from 'react'
 import { FaStar,FaHome } from "react-icons/fa";
 import { FcApproval , FcInTransit,FcHome,FcUndo} from "react-icons/fc";
+
 import axios from 'axios'
 
 const Product = () => {
@@ -40,9 +41,15 @@ console.log(product);
             alignItems:"center"
           }}>
               <Col xs={12} md={4}  > 
-              {product.images.map(img => (
-                  <Card.Img variant="top" src={`https://backende-commerc.herokuapp.com/${img.path}`} alt="hello world" />
+
+            <Carousel fade>
+            {product.images?.map(img => (
+            <Carousel.Item className="d-block w-60 h-60" key={img.id}>
+            <img className="d-block w-100" alt="home images" src={`https://backende-commerc.herokuapp.com/${img.path}`} />
+             </Carousel.Item>
                   ))}
+                  
+               </Carousel>
                </Col>
               <Col xs={12} md={4} className="py-4">
               <h1>{product.name}</h1>
