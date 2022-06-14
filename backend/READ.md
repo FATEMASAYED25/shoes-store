@@ -34,7 +34,9 @@
 
 - GET "api/users" (Required Authorization Header (admin only)) git list of all the users.
 
-- Get "api/users/:id" (Required Authorization Header (now for user only)) git specific product by id.
+- Get "api/users/:id" (Required Authorization Header (now for user only)) git specific user by id.
+
+- PUT "api/users/mine" (Required Authorization Header (now for user only)) user update his informations.
 
 - POST "api/users" (Required Authorization Header (admin only)) Create a new user by sending its username & email & role (user or admin) & fristname & lastname & password & phone & address & city.
 
