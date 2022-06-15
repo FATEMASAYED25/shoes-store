@@ -1,6 +1,14 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary-color: #feee00;
+  --bg-color: #f3f4f8;
+  --primary-font-color: #7e859b;
+}
+
 
 * {
   box-sizing: border-box;
@@ -53,7 +61,18 @@ a {
   }
 }
 
-/* Categories Style */
+/* Start Global Style */
+.main-btn,
+.main-btn:hover,
+.main-btn:focus {
+  background-color: var(--primary-color);
+  color: #333;
+  border-color: var(--primary-color);
+  font-weight: 500;
+}
+/* End Global Style */
+
+/* Start Categories Style */
 .category {
   padding: 2rem 0;
   background-color: rgba(255, 255, 255, 0.812);
@@ -67,10 +86,12 @@ a {
   margin-left: 10px;
 }
 
+
 .category .card-img {
   height: 200px;
   object-fit: cover;
 }
+
 
 .product-description {
   border-left: 1px rgba(0, 0, 0, 0.111) solid;
@@ -80,7 +101,64 @@ a {
 
   padding-bottom: 10px;
 }
+
 .cart-image {
   width: 20%;
   text-align: center;
 }
+
+
+/* Start Account Settings */
+.account-settings {
+  max-width: 100%;
+  margin-bottom: -50px;
+}
+
+.account-settings .aside,
+.account-settings .content {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.account-settings .aside {
+  background-color: #fff;
+}
+
+.account-settings .aside h2 {
+  font-size: 1.5rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1.5rem;
+  margin: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.account-settings .aside .list-group-item {
+  border: none;
+}
+
+.account-settings .aside .badge {
+  color: #333;
+  background-color: var(--primary-color) !important;
+}
+
+.account-settings .content {
+  background-color: var(--bg-color);
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.account-settings .content header p {
+  color: var(--primary-font-color);
+}
+
+.account-settings .content .box {
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: 0px 0px 7px -3px var(--primary-font-color);
+}
+
+.account-settings .content .box h4 {
+  margin-bottom: 1rem;
+}
+
+/* End Account Settings */
+

@@ -1,9 +1,7 @@
 
 import React from "react";
 import { useCart } from "react-use-cart";
-import Product from "./Product";
 import { Container, Col, Row, Button } from 'react-bootstrap'
-import { useState } from "react";
 import { FaPlusSquare, FaMinusSquare, FaTrashAlt } from 'react-icons/fa';
 
 
@@ -20,9 +18,6 @@ function Cart() {
   console.log(items);
   if (isEmpty) return <h3 style={{ color: 'brown', textAlign: "center", margin: "4%" }}> Hmm! Make an order or more and com back to us</h3>;
 
-
-
- 
 
   var Price = items.map((item) => Number(item.quantity) * Number(item.price));
   var totalProductPrice = Price.reduce((x, y) => x + y);

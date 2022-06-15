@@ -15,7 +15,7 @@ import Returns from './pages/Team/Returns';
 import Services from './pages/Team/Services';
 import About from './pages/About';
 import Team from './pages/Team/Team';
-
+import AccountSettings from "./components/Account-Settings/Account";
 function App() {
 
   
@@ -36,8 +36,7 @@ function App() {
     <Route path="/Services" element={<Services />} />
     <Route path="/Returns" element={<Returns />} />
     <Route path="/About" element={<About />} />
-
-
+    <Route path="/Account/*" element={<AccountSettings />} />
     <Route path="/Cart" element={<Cart />} />
     <Route path="/Product/:id" element={<Product/>} />
     <Route path="/Categories" element={<Categories/>} />
