@@ -7,8 +7,7 @@ import img4 from "../images/4.png";
 import {useCart} from "react-use-cart";
 const Navigation = () => {
   const {items}= useCart()
-  var quantity = items.map((item) => Number(item.quantity));
-  var totalQuantity = quantity.reduce((x, y) => x + y);
+
   return (
     <React.Fragment>
       <Container fluid >
@@ -35,7 +34,7 @@ const Navigation = () => {
             </Col>
           <Col className="d-flex justify-content-around" >
           
-           <Link  style={{ color: 'black'}} to="/Cart"><FaShoppingCart size="27px" /> {totalQuantity} </Link>
+           <Link  style={{ color: 'black'}} to="/Cart"><FaShoppingCart size="27px" /> {items.length} </Link>
            <NavLink to="/Account">
               <MdOutlineManageAccounts size="1.5em" /> My Account
             </NavLink>
