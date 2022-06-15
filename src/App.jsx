@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import Navigation from "./components/Navigation" ;
 import Product from "./pages/Product"
 import Categories from './components/Categories';
-import ShoppingCart from './pages/ShoppingCart';
 import Cart from './pages/Cart';
 import Help from './pages/Team/Help';
 import Contact from './pages/Team/Contact';
@@ -42,8 +41,7 @@ function App() {
     <Route path="/Cart" element={<Cart />} />
     <Route path="/Product/:id" element={<Product/>} />
     <Route path="/Categories" element={<Categories/>} />
-    <Route path="/ShoppingCart/:id" element={<ShoppingCart/>} />
-
+  
 
     </Routes>
    
