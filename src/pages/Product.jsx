@@ -4,11 +4,11 @@ import { useLocation ,Link } from 'react-router-dom'
 import { useState ,useEffect } from 'react'
 import { FaStar,FaHome } from "react-icons/fa";
 import { FcApproval , FcInTransit,FcHome,FcUndo} from "react-icons/fc";
-
+import {useCart} from "react-use-cart";
 import axios from 'axios'
 
 const Product = () => {
-
+  const {addItem}=useCart();
 const location=useLocation()
 const id= location.pathname.split("/")[2];
 
@@ -69,7 +69,7 @@ useEffect(() => {
 
               </div>
               <p>after the visitor pressing on the  add to shoppingcart the website order from the visitor to registrate  on the website </p>
-              <Link to={`/ShoppingCart/${product.id}`}><Button className="my-2" variant="primary">add to shopping card</Button></Link>
+              <Link to='/Cart' onClick={()=>{addItem(product)}} ><Button className="my-2" variant="primary">add to shopping card</Button></Link>
               </Col>
               <Col className='product-description' xs={12} md={4}>
               <p> <FcUndo/> you can return the product if it has any issues </p>
