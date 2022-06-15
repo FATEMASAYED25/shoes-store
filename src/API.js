@@ -1,12 +1,31 @@
+import axios from 'axios'
+
 const api = "https://backende-commerc.herokuapp.com/api";
 
-// Generate a unique token
-// let token = localStorage.token;
+const admin_data = {
+  "username": process.env.REACT_APP_USERNAME_ADMIN,
+  "password": process.env.REACT_APP_PASSWORD_ADMIN
+}
 
-// const headers = {
-//   Accept: "application/json",
-//     Authorization: token,
-// };
+const user_data = {
+  "username": process.env.REACT_APP_USERNAME_USER,
+  "password": process.env.REACT_APP_PASSWORD_USER
+}
+
+export async function getToken(body) {
+  try {
+    const response = await axios.post(
+      `${api}/users/login`,
+      body,
+      {headers: {
+        'Content-Type': 'application/json'
+      }}
+    );
+    return response.data
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export async function allProducts() {
   let data = null;
@@ -30,36 +49,99 @@ export async function deleteProduct(id) {
   return data;
 }
 
-export async function userById(id) {
-  let data = null;
+export async function allUsers(token) {
   try {
-    let res = await fetch(`${api}/users/${id}`, {
-      method: "GET",
-      headers: {
-        // Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
-      },
-    });
-    data = await res.json();
-  } catch (err) {
-    console.error(err);
+    getToken(token).then(data => {
+      axios.get(
+        `${api}/users/`,
+        {headers: {
+          'Accept': "application/json",
+          'Authorization': `Bearer ${data.token}`,
+        }}
+      ).then(res => console.log(res.data))
+    }) 
+  } catch (error) {
+    console.error(error);
   }
-  return data;
 }
 
-export async function updateUser() {
-  let data = null;
+allUsers(admin_data)
+
+export async function getUserById(token, id) {
   try {
-    let res = await fetch(`${api}/users/mine`, {
-      method: "PUT",
-      headers: {
-        // Authorization: "Bearer " + token,
-        "Content-Type": "application/json",
-      },
-    });
-    data = await res.json();
-  } catch (err) {
-    console.error(err);
+    getToken(token).then(data => {
+      axios.get(
+        `${api}/users/${id}`,
+        {headers: {
+          'Accept': "application/json",
+          'Authorization': `Bearer ${data.token}`,
+        }}
+      ).then(res => console.log(res.data))
+    }) 
+  } catch (error) {
+    console.error(error);
   }
-  return data;
 }
+
+getUserById(user_data, 1)
+
+export async function updateUserInfo(token, body) {
+  try {
+    getToken(token).then(data => {
+      axios.put(
+        `${api}/users/mine`,
+        body,
+        {headers: {
+          'Accept': "application/json",
+          'Authorization': `Bearer ${data.token}`,
+        }}
+      ).then(res => console.log(res.data))
+    }) 
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function createUser(body) {
+  try {
+    const response = await axios.post(
+      `${api}/users/register`,
+      body,
+      {headers: {
+        'Content-Type': 'application/json'
+      }}
+    );
+    return response.data
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// createUser({
+//   "username": "test",
+//   "email": "test@email.com",
+//   "password": "passtest",
+//   "first_name": "test",
+//   "last_name": "test",
+//   "phone": "123456",
+//   "address": "address",
+//   "city": "city"
+// })
+
+export async function deleteUserById(token, id) {
+  try {
+    getToken(token).then(data => {
+      axios.delete(
+        `${api}/users/${id}`,
+        {headers: {
+          'Accept': "application/json",
+          'Authorization': `Bearer ${data.token}`,
+        }}
+      ).then(res => console.log(res.data))
+    }) 
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// deleteUserById(admin_data, 4)

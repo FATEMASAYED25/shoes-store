@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { userById, updateUser } from "../../API";
+import { getUserById, updateUserInfo } from "../../API";
 
 const Profile = () => {
   const [token, setToken] = useState([]);
   const [user, setUser] = useState([]);
 
   const getUserData = async () => {
-    const userData = await userById(1);
+    const userData = await getUserById(1);
     console.log(userData);
     setToken(userData.token);
   };
 
   const updateUserData = async () => {
-    const res = await updateUser();
+    const res = await updateUserInfo();
     setUser(res);
   };
 
