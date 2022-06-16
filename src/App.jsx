@@ -14,6 +14,8 @@ import News from './pages/Team/News';
 import Returns from './pages/Team/Returns';
 import Services from './pages/Team/Services';
 import About from './pages/About';
+import Register from './pages/Auth/Register';
+import Login from './pages/Auth/Login';
 import Team from './pages/Team/Team';
 import AccountSettings from "./components/Account-Settings/Account";
 function App() {
@@ -40,6 +42,8 @@ function App() {
     <Route path="/Cart" element={<Cart />} />
     <Route path="/Product/:id" element={<Product/>} />
     <Route path="/Categories" element={<Categories/>} />
+    <Route path="/Login" element={<Login/>} />
+    <Route path="/Register" element={<Register/>} />
   
 
     </Routes>
