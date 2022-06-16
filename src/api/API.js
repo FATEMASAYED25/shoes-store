@@ -28,7 +28,7 @@ export async function allProducts() {
     console.error(error);
   }
 }
-// get specific product by id 
+// get specific product by id
 export async function getProductById(id) {
   try {
     const response = await axios.get(`${api}/products/${id}`, {
