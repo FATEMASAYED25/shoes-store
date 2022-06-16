@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { SiAddthis } from "react-icons/si";
 
@@ -11,61 +11,62 @@ const AddProduct3 = () => {
     category_id: "",
     price: "",
     quantity: "",
-    description: ""
+    description: "",
   });
-
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setProduct(prevProduct => {
-        return {
-            ...prevProduct,
-            [name]: value,
-        };
+    setProduct((prevProduct) => {
+      return {
+        ...prevProduct,
+        [name]: value,
+      };
     });
   }
 
   function onSubmit(e) {
-    e.preventDefault()
-    const user = JSON.parse(localStorage.getItem('token'))
-    let formData = new FormData()
-    formData.append("name", product.name)
-    formData.append("price", product.price)
-    formData.append("quantity", product.quantity)
-    formData.append("category_id", product.category_id)
-    formData.append("description", product.description)
-    for(let i=0; i< file.length; i++){
+    e.preventDefault();
+    const user = JSON.parse(localStorage.getItem("token"));
+    let formData = new FormData();
+    formData.append("name", product.name);
+    formData.append("price", product.price);
+    formData.append("quantity", product.quantity);
+    formData.append("category_id", product.category_id);
+    formData.append("description", product.description);
+    for (let i = 0; i < file.length; i++) {
       formData.append("images", file[i]);
-  };
-    axios.post("https://backende-commerc.herokuapp.com/api/products", formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'Authorization': `Bearer ${user.token}`
-            }
-        }).then(res => {
-            console.log(res.data)
-            return res
-        });
-        setProduct({
-          name: "",
-          category_id: "",
-          images: "",
-          price: "",
-          quantity: "",
-          description: ""
-        })
-        setShow(false);
+    }
+    axios
+      .post("https://backende-commerc.herokuapp.com/api/products", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        return res;
+      });
+    setProduct({
+      name: "",
+      category_id: "",
+      images: "",
+      price: "",
+      quantity: "",
+      description: "",
+    });
+    setShow(false);
   }
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button className="main-btn" onClick={handleShow}>
         <SiAddthis size="1.5rem" className="me-2" />
         Add Product
       </Button>
-      <Modal show={show} >
+      <Modal show={show}>
         <Modal.Header closeButton>
           <Modal.Title>Add Product</Modal.Title>
         </Modal.Header>
@@ -81,7 +82,8 @@ const AddProduct3 = () => {
                   type="text"
                   placeholder="Product Name"
                   name="name"
-                  onChange={handleChange}/>
+                  onChange={handleChange}
+                />
               </Col>
             </Form.Group>
 
@@ -90,11 +92,12 @@ const AddProduct3 = () => {
                 Price
               </Form.Label>
               <Col sm={10}>
-                <Form.Control                  
+                <Form.Control
                   type="text"
                   placeholder="Product Price"
                   name="price"
-                  onChange={handleChange}/>
+                  onChange={handleChange}
+                />
               </Col>
             </Form.Group>
 
@@ -107,7 +110,8 @@ const AddProduct3 = () => {
                   type="number"
                   placeholder="Product Quantity"
                   name="quantity"
-                  onChange={handleChange}/>
+                  onChange={handleChange}
+                />
               </Col>
             </Form.Group>
 
@@ -120,7 +124,8 @@ const AddProduct3 = () => {
                   type="number"
                   placeholder="category No"
                   name="category_id"
-                  onChange={handleChange}/>
+                  onChange={handleChange}
+                />
               </Col>
             </Form.Group>
 
@@ -134,7 +139,8 @@ const AddProduct3 = () => {
                   accept="image/*"
                   multiple
                   name="images"
-                  onChange={(e) => setFile(e.target.files)}/>
+                  onChange={(e) => setFile(e.target.files)}
+                />
               </Col>
             </Form.Group>
           </Form>
@@ -151,11 +157,11 @@ const AddProduct3 = () => {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={onSubmit}>
+          <Button className="main-btn" onClick={onSubmit}>
             Add
+          </Button>
+          <Button className="secondary-btn" onClick={handleClose}>
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>

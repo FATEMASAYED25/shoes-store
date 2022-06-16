@@ -15,7 +15,6 @@ const Products = () => {
 
   useEffect(() => {
     getAllProducts();
-
   }, [products]);
 
   return (
@@ -25,7 +24,7 @@ const Products = () => {
         <p>Manage your products. View, Edit or Delete your products</p>
       </header>
       <section className="box">
-        <Row className="justify-content-between align-items-center">
+        <Row className="justify-content-between align-items-center mb-3">
           <Col xs="auto">
             <h4>All Products</h4>
           </Col>
@@ -54,7 +53,10 @@ const Products = () => {
                       <AiFillEdit size="1.5rem" className="me-3" />
                     </NavLink>
                     <NavLink to="/Account/Products">
-                      <AiFillDelete size="1.5rem" onClick={() => deleteProduct(product.id)} />
+                      <AiFillDelete
+                        size="1.5rem"
+                        onClick={() => deleteProduct(product.id)}
+                      />
                     </NavLink>
                   </td>
                 </tr>
