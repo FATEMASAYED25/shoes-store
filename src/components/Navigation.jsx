@@ -38,8 +38,10 @@ const Navigation = () => {
            <NavLink to="/Account">
               <MdOutlineManageAccounts size="1.5em" /> My Account
             </NavLink>
-           <Button className="mx-2" variant="outline-success">sign up </Button>
-           </Col>
+<Link to="/Login"> <Button className="mx-2" variant="outline-success">Login </Button></Link>
+(
+  if(localStorage.getItem("token"===nul)) return (<Button className="mx-2" variant="outline-success" onClick={()=>{localStorage.removeItem("token")}}>logout </Button>)
+)          </Col>
 
         </Row>
       </Container>

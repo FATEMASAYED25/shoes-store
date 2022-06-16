@@ -26,7 +26,7 @@ const [token, setToken]=useState();
 
 useEffect(()=>{
     console.log(form)
-    axios.post('https://backende-commerc.herokuapp.com/api/users/register', form,
+    axios.post('https://backende-commerc.herokuapp.com/api/users/register', {username, email, firstname, lastname, password, phone, address, city},
     {headers: {
         'Content-Type': 'application/json'
         }}
@@ -54,23 +54,23 @@ console.log(token)
         <section className="form">
 
             <label>username</label>
-                <input type="text" name="username" placeholder='username' className='input' onChange={(event)=>{setUsername(event.target.value)}} /><br/>
+                <input type="text" value={username} name="username" placeholder='username' className='input' onChange={(event)=>{event.preventDefault();   setUsername (event.target.value)}} /><br/>
             <label>email</label>
-                <input type="email" name="email" placeholder='email' className='input' onChange={(event)=>{setEmail(event.target.value)}}/><br/>
+                <input type="email"   value={email} name="email" placeholder='email' className='input' onChange={(event)=>{event.preventDefault();   setEmail(event.target.value)}}/><br/>
             <label>firstname</label>
-                <input type="text" name="firstname" placeholder='firstname'className='input' onChange={(event)=>{setFirstname(event.target.value)}}/><br/>
+                <input type="text" value={firstname} name="firstname" placeholder='firstname'className='input' onChange={(event)=>{event.preventDefault();   setFirstname(event.target.value)}}/><br/>
             <label>lastname</label>
-                <input type="text" name="lastname" placeholder='lastname' className='input' onChange={(event)=>{setLastname(event.target.value)}}/><br/>
+                <input type="text" value={lastname} name="lastname" placeholder='lastname' className='input' onChange={(event)=>{event.preventDefault();   setLastname(event.target.value)}}/><br/>
             <label>password</label>
-                <input type="password" name="password" placeholder='password' className='input' onChange={(event)=>{setPassword(event.target.value)}}/><br/>
+                <input type="password" value={password} name="password" placeholder='password' className='input' onChange={(event)=>{event.preventDefault();   setPassword(event.target.value)}}/><br/>
             <label>phone</label>
-                <input type="tel" name="phone" placeholder='phone'className='input' onChange={(event)=>{setPhone(event.target.value)}}/><br/>
+                <input type="tel" name="phone" value={phone} placeholder='phone'className='input' onChange={(event)=>{event.preventDefault();   setPhone(event.target.value)}}/><br/>
             <label>address</label>
-                <input type="text" name="address" placeholder='address' className='input' onChange={(event)=>{setAddress(event.target.value)}}/><br/>
+                <input type="text" name="address" value={address} placeholder='address' className='input' onChange={(event)=>{event.preventDefault();   setAddress(event.target.value)}}/><br/>
                 <label>city</label>
-                <input type="text" name="city" placeholder='city' className='input' onChange={(event)=>{setCity(event.target.value)}}/><br/>
+                <input type="text" name="city" value={city} placeholder='city' className='input' onChange={(event)=>{event.preventDefault();   setCity(event.target.value)}}/><br/>
                 <label>Enter Submit</label>
-                <button  name='submit'  className='submit' onClick={()=>{setForm({username, email, firstname, lastname, password, phone, address, city})}} > Submit </button><br/>
+                <button  name='submit'  className='submit' onClick={(event)=>{event.preventDefault();   setForm({username, email, firstname, lastname, password, phone, address, city})}} > Submit </button><br/>
         </section>
         
         </>

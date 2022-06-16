@@ -56,11 +56,9 @@ const AccountSettings = () => {
         <Col xs={9} className="content">
           <Routes>
             <Route
-              path="/"
-              element={<Navigate to="/Account/Profile" />}
-            ></Route>
-            <Route path="/Profile" element={<Profile />} />
-            <Route path="/Products" element={<Products />} />
+              path="Account" element={<Navigate to="/Profile" />} ></Route>
+            <Route path="Profile" element={<Profile />} />
+            <Route path="Products" element={<Products />} />
           </Routes>
         </Col>
       </Row>
