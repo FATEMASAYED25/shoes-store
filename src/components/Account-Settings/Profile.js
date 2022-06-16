@@ -38,7 +38,7 @@ const Profile = () => {
         </p>
       </header>
       <section className="box">
-        <h4>General Info</h4>
+        <h4 className="mb-3">General Info</h4>
         <Form as={Row} id="update-user-details">
           <Form.Group as={Col} sm={6} className="mb-3" controlId="firstName">
             <Form.Label>First Name</Form.Label>
