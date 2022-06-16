@@ -40,7 +40,7 @@ const AddProduct3 = () => {
     for(let i=0; i< file.length; i++){
       formData.append("images", file[i]);
   };
-    axios.post("http://localhost:3001/api/products", formData, {
+    axios.post("https://backende-commerc.herokuapp.com/api/products", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'Authorization': `Bearer ${user.token}`
