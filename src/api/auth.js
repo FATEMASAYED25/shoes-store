@@ -17,6 +17,10 @@ export async function login(body) {
       console.error(error);
     }
 }
+login({
+  username: "user",
+  password: "superuser"
+})
   
 export async function logout() {
     localStorage.removeItem('token')
