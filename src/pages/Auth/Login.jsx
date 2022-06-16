@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import { useEffect } from "react";
 // import axios from "axios";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { login } from "../../api/auth";
 
 const Login = () => {
@@ -27,7 +27,6 @@ const Login = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    // const userToken = JSON.parse(localStorage.getItem("token"));
 
     let formData = new FormData();
     formData.append("username", user.username);
