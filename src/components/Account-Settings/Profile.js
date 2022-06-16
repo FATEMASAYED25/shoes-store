@@ -53,21 +53,35 @@ const Profile = () => {
           <Form.Group as={Col} sm={6} className="mb-3" controlId="email">
             <Form.Label>Email address</Form.Label>
             <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
           </Form.Group>
 
-          <Form.Group as={Col} sm={6} className="mb-3" controlId="password">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+          <Form.Group as={Col} sm={6} className="mb-3" controlId="username">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="text" placeholder="Username" />
           </Form.Group>
 
-          <Col>
-            <Button className="main-btn" type="submit">
-              Update
-            </Button>
-          </Col>
+          <Form.Group as={Col} sm={6} className="mb-3" controlId="address">
+            <Form.Label>Address</Form.Label>
+            <Form.Control type="text" placeholder="Address" />
+          </Form.Group>
+
+          <Form.Group as={Col} sm={6} className="mb-3" controlId="city">
+            <Form.Label>City</Form.Label>
+            <Form.Control type="text" placeholder="City" />
+          </Form.Group>
+
+          <Form.Group as={Col} sm={6} className="mb-3" controlId="phone">
+            <Form.Label>Phone</Form.Label>
+            <Form.Control type="tel" placeholder="Phone" />
+          </Form.Group>
+
+          <Row>
+            <Col>
+              <Button className="main-btn" type="submit">
+                Update
+              </Button>
+            </Col>
+          </Row>
         </Form>
       </section>
     </>
