@@ -5,19 +5,29 @@ import { RiAccountCircleFill } from "react-icons/ri";
 import { BsFillBagFill } from "react-icons/bs";
 import Products from "./Products";
 import Profile from "./Profile";
-import { allProducts } from "../../API";
+import { allProducts } from "../../api/API";
+import { getCurrentUser, logout } from "../../api/auth";
 
 const AccountSettings = () => {
   const [products, setProducts] = useState([]);
+  const [currentUser, setCurrentUser] = useState(undefined);
 
   const getAllProducts = async () => {
     const res = await allProducts();
     setProducts(res);
   };
-
+  const getUser = async () => {
+    const res = await getCurrentUser();
+    setCurrentUser(res)
+  }
   useEffect(() => {
+    getUser();
     getAllProducts();
-  }, []);
+  }, [products]);
+
+  const logOut = () => {
+    logout();
+  };
 
   return (
     <Container className="account-settings">
@@ -30,7 +40,8 @@ const AccountSettings = () => {
                 <RiAccountCircleFill size="1.5em" /> Profile
               </NavLink>
             </ListGroup.Item>
-            <ListGroup.Item
+            {currentUser?.role === 'admin' && (
+              <ListGroup.Item
               as="li"
               className="d-flex justify-content-between align-items-center"
             >
@@ -39,6 +50,7 @@ const AccountSettings = () => {
               </NavLink>
               <Badge pill>{products.length}</Badge>
             </ListGroup.Item>
+            )}
           </ListGroup>
         </Col>
         <Col xs={9} className="content">

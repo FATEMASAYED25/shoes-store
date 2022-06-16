@@ -3,7 +3,7 @@ import { Col, Row, Table } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import AddProduct from "./Add-Product";
-import { allProducts, deleteProduct } from "../../API";
+import { allProducts, deleteProduct } from "../../api/API";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -13,13 +13,10 @@ const Products = () => {
     setProducts(res);
   };
 
-  // const deleteProduct = async () => {
-  //   await deleteProduct(3);
-  // };
-
   useEffect(() => {
     getAllProducts();
-  }, []);
+
+  }, [products]);
 
   return (
     <>
@@ -57,7 +54,7 @@ const Products = () => {
                       <AiFillEdit size="1.5rem" className="me-3" />
                     </NavLink>
                     <NavLink to="/Account/Products">
-                      <AiFillDelete size="1.5rem" />
+                      <AiFillDelete size="1.5rem" onClick={() => deleteProduct(product.id)} />
                     </NavLink>
                   </td>
                 </tr>

@@ -1,20 +1,71 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import axios from 'axios'
 import { Button, Col, Form, Modal, Row } from "react-bootstrap";
 import { SiAddthis } from "react-icons/si";
 
-const AddProduct = () => {
+const AddProduct3 = () => {
   const [show, setShow] = useState(false);
+  const [file, setFile] = useState(null);
+  const [product, setProduct] = useState({
+    name: "",
+    category_id: "",
+    price: "",
+    quantity: "",
+    description: ""
+  });
+
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setProduct(prevProduct => {
+        return {
+            ...prevProduct,
+            [name]: value,
+        };
+    });
+  }
+
+  function onSubmit(e) {
+    e.preventDefault()
+    const user = JSON.parse(localStorage.getItem('token'))
+    let formData = new FormData()
+    formData.append("name", product.name)
+    formData.append("price", product.price)
+    formData.append("quantity", product.quantity)
+    formData.append("category_id", product.category_id)
+    formData.append("description", product.description)
+    for(let i=0; i< file.length; i++){
+      formData.append("images", file[i]);
+  };
+    axios.post("http://localhost:3001/api/products", formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'Authorization': `Bearer ${user.token}`
+            }
+        }).then(res => {
+            console.log(res.data)
+            return res
+        });
+        setProduct({
+          name: "",
+          category_id: "",
+          images: "",
+          price: "",
+          quantity: "",
+          description: ""
+        })
+        setShow(false);
+  }
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
         <SiAddthis size="1.5rem" className="me-2" />
         Add Product
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} >
         <Modal.Header closeButton>
           <Modal.Title>Add Product</Modal.Title>
         </Modal.Header>
@@ -25,7 +76,12 @@ const AddProduct = () => {
                 Name
               </Form.Label>
               <Col sm="10">
-                <Form.Control type="text" placeholder="Product Name" />
+                <Form.Control
+                  value={product.name}
+                  type="text"
+                  placeholder="Product Name"
+                  name="name"
+                  onChange={handleChange}/>
               </Col>
             </Form.Group>
 
@@ -34,7 +90,11 @@ const AddProduct = () => {
                 Price
               </Form.Label>
               <Col sm={10}>
-                <Form.Control type="text" placeholder="Product Price" />
+                <Form.Control                  
+                  type="text"
+                  placeholder="Product Price"
+                  name="price"
+                  onChange={handleChange}/>
               </Col>
             </Form.Group>
 
@@ -43,7 +103,11 @@ const AddProduct = () => {
                 Quantity
               </Form.Label>
               <Col sm={10}>
-                <Form.Control type="number" placeholder="Product Quantity" />
+                <Form.Control
+                  type="number"
+                  placeholder="Product Quantity"
+                  name="quantity"
+                  onChange={handleChange}/>
               </Col>
             </Form.Group>
 
@@ -52,7 +116,11 @@ const AddProduct = () => {
                 Category
               </Form.Label>
               <Col sm={10}>
-                <Form.Control type="text" placeholder="Product " />
+                <Form.Control
+                  type="number"
+                  placeholder="category No"
+                  name="category_id"
+                  onChange={handleChange}/>
               </Col>
             </Form.Group>
 
@@ -61,7 +129,12 @@ const AddProduct = () => {
                 Images
               </Form.Label>
               <Col sm={10}>
-                <Form.Control type="file" accept="image/*" multiple />
+                <Form.Control
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  name="images"
+                  onChange={(e) => setFile(e.target.files)}/>
               </Col>
             </Form.Group>
           </Form>
@@ -72,6 +145,8 @@ const AddProduct = () => {
               as="textarea"
               rows={3}
               placeholder="Product Description"
+              name="description"
+              onChange={handleChange}
             />
           </Form.Group>
         </Modal.Body>
@@ -79,7 +154,7 @@ const AddProduct = () => {
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={onSubmit}>
             Add
           </Button>
         </Modal.Footer>
@@ -88,4 +163,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default AddProduct3;

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
-import { getUserById, updateUserInfo } from "../../API";
+import { getUserById, updateUserInfo } from "../../api/API";
 
 const Profile = () => {
   const [token, setToken] = useState([]);
