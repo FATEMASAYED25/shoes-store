@@ -30,11 +30,6 @@ useEffect(()=>{
         console.log(error);
         });
 
-<<<<<<< HEAD
-console.log(token)
-
-=======
->>>>>>> 5af6b334f070b996c2ec10c4f62c65392cac353a
 },[form])
 
     return (

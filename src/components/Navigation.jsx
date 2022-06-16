@@ -35,7 +35,7 @@ const Navigation = () => {
           <Col className="d-flex justify-content-around align-items-center" >
           
            <Link  style={{ color: 'black'}} to="/Cart"><FaShoppingCart size="27px" /> {items.length} </Link>
-           <NavLink to="/Account">
+           <NavLink to="/Account/Profile">
               <MdOutlineManageAccounts size="1.5em" /> My Account
             </NavLink>
 <Link to="/Login"> <Button className="mx-2" variant="outline-success">Login </Button></Link>
