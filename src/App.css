@@ -90,6 +90,12 @@ svg {
   margin-top: 20px;
 }
 
+.category h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0.5rem;
+}
+
 .category .card {
   border: none;
   padding: 0.5rem;
@@ -101,6 +107,8 @@ svg {
   height: 200px;
   object-fit: cover;
 }
+
+/* End Categories Style */
 
 .product-description {
   border-left: 1px rgba(0, 0, 0, 0.111) solid;
