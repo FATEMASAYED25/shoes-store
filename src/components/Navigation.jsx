@@ -1,27 +1,34 @@
-import React from 'react';
+import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import { Navbar, Container, Nav, Form, FormControl, Button, Row, Col ,Image} from 'react-bootstrap';
-import {FaShoppingCart} from 'react-icons/fa';
+import {
+  Navbar,
+  Container,
+  Nav,
+  Form,
+  FormControl,
+  Button,
+  Row,
+  Col,
+  Image,
+} from "react-bootstrap";
+import { FaShoppingCart } from "react-icons/fa";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import img4 from "../images/4.png";
-import {useCart} from "react-use-cart";
+import { useCart } from "react-use-cart";
+
 const Navigation = () => {
-  const {items}= useCart()
+  const token = JSON.parse(localStorage.getItem("token"));
+  const { items } = useCart();
 
   return (
     <React.Fragment>
-      <Container fluid >
+      <Container fluid>
         <Row className="d-flex justify-content-end align-items-center">
-
-          <Col   md={1} xs={3} className="mx-2 " >
+          <Col md={1} xs={3} className="mx-2 ">
             <Link to="/home">
-             <Image 
-              src={img4} 
-              className="img-fluid"
-              alt="fourth" 
-              />
-              </Link>
-              </Col>
+              <Image src={img4} className="img-fluid" alt="fourth" />
+            </Link>
+          </Col>
           <Col md={5} lg={6} xs={4}>
             <Form className="d-flex">
               <FormControl
@@ -31,23 +38,39 @@ const Navigation = () => {
                 aria-label="Search"
               />
             </Form>
-            </Col>
-          <Col className="d-flex justify-content-around align-items-center" >
-          
-           <Link  style={{ color: 'black'}} to="/Cart"><FaShoppingCart size="27px" /> {items.length} </Link>
-           <NavLink to="/Account/Profile">
-              <MdOutlineManageAccounts size="1.5em" /> My Account
-            </NavLink>
-<Link to="/Login"> <Button className="mx-2" variant="outline-success">Login </Button></Link>
-(
-  if(localStorage.getItem("token"===nul)) return (<Button className="mx-2" variant="outline-success" onClick={()=>{localStorage.removeItem("token")}}>logout </Button>)
-)          </Col>
-
+          </Col>
+          <Col className="d-flex justify-content-around align-items-center">
+            <Link style={{ color: "black" }} to="/Cart">
+              <FaShoppingCart size="27px" /> {items.length}
+            </Link>
+            {token && (
+              <NavLink to="/Account/Profile">
+                <MdOutlineManageAccounts size="1.5em" /> My Account
+              </NavLink>
+            )}
+            {!token && (
+              <Link to="/Login">
+                <Button className="mx-2" variant="outline-success">
+                  Login
+                </Button>
+              </Link>
+            )}
+            {token && (
+              <Button
+                className="mx-2"
+                variant="outline-success"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                }}
+              >
+                Logout
+              </Button>
+            )}
+          </Col>
         </Row>
       </Container>
       <Navbar expand="lg" style={{ background: "rgb(148 108 221)" }}>
         <Container>
-
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mx-auto">
@@ -61,10 +84,8 @@ const Navigation = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-  
-      </React.Fragment>
+    </React.Fragment>
   );
-}
+};
 
 export default Navigation;

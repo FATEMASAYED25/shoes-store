@@ -18,8 +18,8 @@ const AccountSettings = () => {
   };
   const getUser = async () => {
     const res = await getCurrentUser();
-    setCurrentUser(res)
-  }
+    setCurrentUser(res);
+  };
   useEffect(() => {
     getUser();
     getAllProducts();
@@ -40,22 +40,24 @@ const AccountSettings = () => {
                 <RiAccountCircleFill size="1.5em" /> Profile
               </NavLink>
             </ListGroup.Item>
-            {currentUser?.role === 'admin' && (
+            {currentUser?.role === "admin" && (
               <ListGroup.Item
-              as="li"
-              className="d-flex justify-content-between align-items-center"
-            >
-              <NavLink to="/Account/Products" className="ms-2 me-auto fw-bold">
-                <BsFillBagFill size="1.5em" /> Products
-              </NavLink>
-              <Badge pill>{products.length}</Badge>
-            </ListGroup.Item>
+                as="li"
+                className="d-flex justify-content-between align-items-center"
+              >
+                <NavLink
+                  to="/Account/Products"
+                  className="ms-2 me-auto fw-bold"
+                >
+                  <BsFillBagFill size="1.5em" /> Products
+                </NavLink>
+                <Badge pill>{products.length}</Badge>
+              </ListGroup.Item>
             )}
           </ListGroup>
         </Col>
         <Col xs={9} className="content">
           <Routes>
-         
             <Route path="Profile" element={<Profile />} />
             <Route path="Products" element={<Products />} />
           </Routes>
