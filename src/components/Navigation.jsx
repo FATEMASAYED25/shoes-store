@@ -32,7 +32,7 @@ const Navigation = () => {
               />
             </Form>
             </Col>
-          <Col className="d-flex justify-content-around" >
+          <Col className="d-flex justify-content-around align-items-center" >
           
            <Link  style={{ color: 'black'}} to="/Cart"><FaShoppingCart size="27px" /> {items.length} </Link>
            <NavLink to="/Account">
