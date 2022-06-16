@@ -2,9 +2,6 @@ import axios from "axios";
 
 const api = "https://backende-commerc.herokuapp.com/api";
 
-<<<<<<< HEAD
-// product functions...git all products from the data pase
-=======
 export async function allCategories() {
   try {
     const response = await axios.get(`${api}/categories/`, {
@@ -19,7 +16,6 @@ export async function allCategories() {
 }
 
 // product functions...
->>>>>>> 48202397c7eb58f56612f02d28160fe4f7ed445e
 export async function allProducts() {
   try {
     const response = await axios.get(`${api}/products/`, {
@@ -32,7 +28,7 @@ export async function allProducts() {
     console.error(error);
   }
 }
-// get specific product by id 
+// get specific product by id
 export async function getProductById(id) {
   try {
     const response = await axios.get(`${api}/products/${id}`, {
