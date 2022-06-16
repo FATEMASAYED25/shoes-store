@@ -181,7 +181,7 @@ a {
   .input:hover{
     background-color: rgba(252, 233, 252, 0.705);
   }
-  label{
+  section label{
     margin: 3%;
     color: blueviolet;
     font-family: 'Times New Roman', Times, serif;
@@ -195,6 +195,15 @@ a {
   }
 .submit:hover{
   background-color: antiquewhite;
+
+}
+
+#link{
+  background-color: rgb(146, 98, 98);
+  font-size: medium;
+  color: aquamarine;
+  margin:5%;
+  border-radius: 20px;
 }
 /* End Account Settings */
 
