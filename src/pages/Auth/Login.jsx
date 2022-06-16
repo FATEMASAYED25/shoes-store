@@ -10,9 +10,6 @@ const Login = () => {
     const [form, setForm]=useState();
     const [token, setToken]=useState()
 
-
-
-
 useEffect(()=>{
     axios.post('https://backende-commerc.herokuapp.com/api/users/login', form,
     {headers: {
@@ -28,11 +25,7 @@ useEffect(()=>{
 
 console.log(token)
 
-
-
 },[form])
-
-
 
     return (
 <>

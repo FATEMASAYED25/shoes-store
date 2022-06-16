@@ -66,7 +66,7 @@ const Categories = () => {
                     />
                     <Card.Body>
                       <Card.Title>{product.name}</Card.Title>
-                      <Card.Text>{product.price}</Card.Text>
+                      <Card.Text>{product.price}$</Card.Text>
                       <Button variant="primary">buy now</Button>
                     </Card.Body>
                   </Card>

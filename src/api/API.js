@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const api = "https://backende-commerc.herokuapp.com/api";
 
-// product functions...
+// product functions...git all products from the data pase
 export async function allProducts() {
   try {
     const response = await axios.get(
@@ -15,7 +15,7 @@ export async function allProducts() {
     console.error(error);
   }
 }
-
+// get specific product by id 
 export async function getProductById(id) {
   try {
     const response = await axios.get(
@@ -28,7 +28,7 @@ export async function getProductById(id) {
     console.error(error);
   }
 }
-
+//delet specific product
 export async function deleteProduct(id) {
   try {
     const user = JSON.parse(localStorage.getItem('token'))
