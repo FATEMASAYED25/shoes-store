@@ -1,26 +1,27 @@
-import React, { useState, useEffect } from "react";
-import { Row, Card, Button, Col } from "react-bootstrap";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import { Button, Card, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import { allCategories, allProducts } from "../api/API";
 
-//fetch the categories data and products data
 const Categories = () => {
-  const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const getAllCategories = async () => {
+    const res = await allCategories();
+    setCategories(res);
+  };
+
+  const getAllProducts = async () => {
+    const res = await allProducts();
+    setProducts(res);
+  };
 
   useEffect(() => {
-    axios
-      .get("https://backende-commerc.herokuapp.com/api/products")
-      .then((res) => {
-        setProducts(res.data);
-      });
-    axios
-      .get("https://backende-commerc.herokuapp.com/api/categories")
-      .then((res) => {
-        setCategories(res.data);
-      });
+    getAllCategories();
+    getAllProducts();
   }, []);
 
   const responsive = {
@@ -48,7 +49,7 @@ const Categories = () => {
   };
 
   return (
-    <React.Fragment>
+    <>
       {categories.map((category) => (
         <Row key={category.id} className="category">
           <h2>{category.name}</h2>
@@ -75,7 +76,7 @@ const Categories = () => {
           </Carousel>
         </Row>
       ))}
-    </React.Fragment>
+    </>
   );
 };
 
