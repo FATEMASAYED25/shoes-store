@@ -56,8 +56,8 @@ const Categories = () => {
             {products
               .filter((product) => product.category_id === category.id)
               .map((product) => (
-                <Link to={`/product/${product.id}`}>
-                  <Card key={product.id}>
+                <Link to={`/product/${product.id}`} key={product.id}>
+                  <Card>
                     <Card.Img
                       variant="top"
                       src={`https://backende-commerc.herokuapp.com/${product.images[0].path}`}
