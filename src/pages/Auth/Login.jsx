@@ -40,7 +40,7 @@ const Login = () => {
       username: "",
       password: "",
     });
-    window.location.reload();
+    window.location = "/";
   }
 
   return (
