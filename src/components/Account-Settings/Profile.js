@@ -19,7 +19,7 @@ const Profile = () => {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem('token'))
     console.log(user)
-    getUserData(user.login)
+    getUserData(user.id)
   }, []);
 
   return (
