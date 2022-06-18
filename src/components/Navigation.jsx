@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import {
   Navbar,
@@ -15,11 +15,19 @@ import { FaShoppingCart } from "react-icons/fa";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import img4 from "../images/4.png";
 import { useCart } from "react-use-cart";
+import { getCurrentUser } from "../api/auth";
 
 const Navigation = () => {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const [token, setToken] = useState(undefined)
   const { items } = useCart();
 
+  const getUser = async () => {
+    const res = await getCurrentUser();
+    setToken(res);
+  };
+  useEffect(() => {
+    getUser()
+  }, [token]);
   return (
     <React.Fragment>
       <Container fluid>
@@ -43,29 +51,30 @@ const Navigation = () => {
             <Link style={{ color: "black" }} to="/Cart">
               <FaShoppingCart size="27px" /> {items.length}
             </Link>
-            {token && (
-              <NavLink to="/Account/Profile">
-                <MdOutlineManageAccounts size="1.5em" /> My Account
-              </NavLink>
-            )}
-            {!token && (
-              <Link to="/Login">
-                <Button className="mx-2" variant="outline-success">
-                  Login
-                </Button>
-              </Link>
-            )}
-            {token && (
-              <Button
-                className="mx-2"
-                variant="outline-success"
-                onClick={() => {
-                  localStorage.removeItem("token");
-                }}
-              >
-                Logout
-              </Button>
-            )}
+            {token 
+              ? <>
+                  <NavLink to="/Account/Profile">
+                    <MdOutlineManageAccounts size="1.5em" /> My Account
+                  </NavLink>
+                  <Link to="/home">
+                  <Button
+                  className="mx-2"
+                  variant="outline-success"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    setToken(undefined)
+                  }}
+                  >
+                  Logout
+                  </Button>
+                  </Link>
+                </>
+              : <Link to="/Login">
+                  <Button className="mx-2" variant="outline-success">
+                    Login
+                  </Button>
+                </Link>
+            }
           </Col>
         </Row>
       </Container>

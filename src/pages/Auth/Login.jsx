@@ -1,15 +1,9 @@
 import { useState } from "react";
-// import { useEffect } from "react";
-// import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { login } from "../../api/auth";
 
 const Login = () => {
-  //   const [username, setUsername] = useState();
-  //   const [password, setPassword] = useState();
-  //   const [form, setForm] = useState();
-  //   const [token, setToken] = useState();
-
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -27,19 +21,12 @@ const Login = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-
-    let formData = new FormData();
-    formData.append("username", user.username);
-    formData.append("password", user.password);
-
-    formData.forEach((data) => console.log(data));
-    login(formData);
-
-    setUser({
-      username: "",
-      password: "",
-    });
-    window.location = "/";
+    login(user).then(res => {
+      if (res.token){
+        navigate('/home');
+        window.location.reload(true);
+      }
+    })
   }
 
   return (
@@ -57,10 +44,6 @@ const Login = () => {
           className="input"
           value={user.username}
           onChange={handleChange}
-          //   onChange={(event) => {
-          //     event.preventDefault();
-          //     setUsername(event.target.value);
-          //   }}
         />
         <br />
         <label>Password</label>
@@ -71,10 +54,6 @@ const Login = () => {
           className="input"
           value={user.password}
           onChange={handleChange}
-          //   onChange={(event) => {
-          //     event.preventDefault();
-          //     setPassword(event.target.value);
-          //   }}
         />
         <br />
         <label>Enter Submit</label>

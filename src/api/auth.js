@@ -30,11 +30,6 @@ export async function login(body) {
   }
 }
 
-login({
-  username: "user",
-  password: "superuser",
-});
-
 export async function logout() {
   localStorage.removeItem("token");
 }

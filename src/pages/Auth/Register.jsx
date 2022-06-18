@@ -1,24 +1,15 @@
 import React from "react";
-import axios from "axios";
-import { useState, useEffect } from "react";
-import { register } from "../../api/auth";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createUser } from "../../api/API";
 
 const Register = () => {
-  //   const [username, setUsername] = useState();
-  //   const [email, setEmail] = useState();
-  //   const [firstname, setFirstname] = useState();
-  //   const [lastname, setLastname] = useState();
-  //   const [password, setPassword] = useState();
-  //   const [phone, setPhone] = useState();
-  //   const [address, setAddress] = useState();
-  //   const [city, setCity] = useState();
-  //   const [form, setForm] = useState();
-  //   const [token, setToken] = useState();
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     username: "",
     email: "",
-    firstname: "",
-    lastname: "",
+    first_name: "",
+    last_name: "",
     password: "",
     phone: "",
     address: "",
@@ -37,31 +28,11 @@ const Register = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-
-    let formData = new FormData();
-    formData.append("username", user.username);
-    formData.append("email", user.email);
-    formData.append("firstname", user.firstname);
-    formData.append("lastname", user.lastname);
-    formData.append("password", user.password);
-    formData.append("phone", user.phone);
-    formData.append("address", user.address);
-    formData.append("city", user.city);
-
-    formData.forEach((data) => console.log(data));
-    register(formData);
-
-    setUser({
-      username: "",
-      email: "",
-      firstname: "",
-      lastname: "",
-      password: "",
-      phone: "",
-      address: "",
-      city: "",
-    });
-    window.location = "/Login";
+    createUser(user).then(res => {
+      if (res){
+        navigate('/login');
+      }
+    })
   }
 
   return (
@@ -90,8 +61,8 @@ const Register = () => {
         <label>firstname</label>
         <input
           type="text"
-          value={user.firstname}
-          name="firstname"
+          value={user.first_name}
+          name="first_name"
           placeholder="firstname"
           className="input"
           onChange={handleChange}
@@ -100,8 +71,8 @@ const Register = () => {
         <label>lastname</label>
         <input
           type="text"
-          value={user.lastname}
-          name="lastname"
+          value={user.last_name}
+          name="last_name"
           placeholder="lastname"
           className="input"
           onChange={handleChange}
