@@ -25,15 +25,11 @@ const AccountSettings = () => {
     getAllProducts();
   }, [products]);
 
-  const logOut = () => {
-    logout();
-  };
-
   return (
     <Container className="account-settings">
       <Row>
         <Col xs={3} className="aside">
-          <h2>Hello Sondos!</h2>
+          <h2>Hello {currentUser.username}!</h2>
           <ListGroup>
             <ListGroup.Item>
               <NavLink to="/Account/Profile" className="ms-2 fw-bold">

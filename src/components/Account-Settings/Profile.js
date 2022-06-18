@@ -4,23 +4,35 @@ import { getUserById, updateUserInfo } from "../../api/API";
 
 const Profile = () => {
   const [user, setUser] = useState({});
+  const token = JSON.parse(localStorage.getItem("token"))
 
   const getUserData = async (id) => {
     const userData = await getUserById(id);
-    console.log(userData);
     setUser(userData);
   };
 
-  const updateUserData = async (id) => {
-    const res = await updateUserInfo(id);
-    setUser(res);
-  };
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setUser((prevUser) => {
+      return {
+        ...prevUser,
+        [name]: value,
+      };
+    });
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    updateUserInfo(user).then(res => {
+      if(res){
+        window.location.reload(true);
+      }
+    })
+  }
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('token'))
-    console.log(user)
-    getUserData(user.id)
-  }, []);
+    getUserData(token.id)
+  }, [token.id]);
 
   return (
     <>
@@ -35,42 +47,84 @@ const Profile = () => {
         <Form as={Row} id="update-user-details">
           <Form.Group as={Col} sm={6} className="mb-3" controlId="firstName">
             <Form.Label>First Name</Form.Label>
-            <Form.Control type="text" placeholder={user.first_name} value={user.first_name} />
+            <Form.Control 
+              type="text"
+              placeholder="first_name"
+              name="first_name"
+              defaultValue={user.first_name}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group as={Col} sm={6} className="mb-3" controlId="lastName">
             <Form.Label>Last Name</Form.Label>
-            <Form.Control type="text" placeholder={user.last_name} value={user.last_name}  />
+            <Form.Control 
+              type="text" 
+              placeholder="last_name"
+              name="last_name"
+              defaultValue={user.last_name}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group as={Col} sm={6} className="mb-3" controlId="email">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder={user.email} value={user.email}  />
+            <Form.Control 
+              type="email" 
+              placeholder="email"
+              name="email"
+              defaultValue={user.email}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group as={Col} sm={6} className="mb-3" controlId="username">
             <Form.Label>Username</Form.Label>
-            <Form.Control type="text" placeholder={user.username} value={user.username}  />
+            <Form.Control 
+              type="text"
+              placeholder="username"
+              name="username"
+              defaultValue={user.username}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group as={Col} sm={6} className="mb-3" controlId="address">
             <Form.Label>Address</Form.Label>
-            <Form.Control type="text" placeholder={user.address} value={user.address}  />
+            <Form.Control 
+              type="text"
+              placeholder="address"
+              name="address"
+              defaultValue={user.address}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group as={Col} sm={6} className="mb-3" controlId="city">
             <Form.Label>City</Form.Label>
-            <Form.Control type="text" placeholder={user.city} value={user.city}  />
+            <Form.Control 
+              type="text"
+              placeholder="city"
+              name="city"
+              defaultValue={user.city} 
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group as={Col} sm={6} className="mb-3" controlId="phone">
             <Form.Label>Phone</Form.Label>
-            <Form.Control type="tel" placeholder={user.phone} value={user.phone}  />
+            <Form.Control 
+              type="tel" 
+              placeholder="phone"
+              name="phone"
+              defaultValue={user.phone}
+              onChange={handleChange} 
+            />
           </Form.Group>
 
           <Row>
             <Col>
-              <Button className="main-btn" type="submit">
+              <Button className="main-btn" type="submit" onClick={onSubmit}>
                 Update
               </Button>
             </Col>
