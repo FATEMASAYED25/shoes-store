@@ -2,6 +2,7 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
+const { Op } = require("sequelize");
 const { User } = require('../../models');
 const { authAdmin, authUser} = require('../../middlewares/authentication');
 
@@ -149,8 +150,19 @@ router.post('/register', async (req, res) => {
             address: req.body.address,
             city: req.body.city,
         }
+        const userExist = await User.findOne({
+            where: {
+                [Op.and]: [
+                  { username: req.body.username },
+                  { email: req.body.email }
+                ]
+            }
+        })
+        if(userExist){
+            return res.status(409).json("This username or email already taken")
+        }
         const newUser = await User.create(user);
-        res.status(201).json(newUser);
+        return res.status(201).json(newUser);
     }catch(err){
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
