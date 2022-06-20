@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 const { Op } = require("sequelize");
 const { User } = require('../../models');
-const { authAdmin, authUser} = require('../../middlewares/authentication');
+const { authAdmin, authUser } = require('../../middlewares/authentication');
 
 dotenv.config();
 
@@ -19,11 +19,11 @@ router.get('/', authAdmin, async (_req, res) => {
         const users = await User.findAll({
             attributes: { exclude: ['password'] }
         });
-        if(!users){
+        if (!users) {
             return res.json("Not found");
         }
         res.status(200).json(users);
-    }catch (err) {
+    } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
     }
@@ -34,18 +34,18 @@ router.get('/:id', authUser, async (req, res) => {
         const user = await User.findByPk(req.params.id, {
             attributes: { exclude: ['password'] }
         });
-        if(!user){
+        if (!user) {
             return res.json("Not found");
         }
         res.status(200).json(user);
-    }catch (err) {
+    } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
     }
 });
 
 router.post('/', authAdmin, async (req, res) => {
-    try{
+    try {
         const user = {
             username: req.body.username,
             email: req.body.email,
@@ -59,7 +59,7 @@ router.post('/', authAdmin, async (req, res) => {
         }
         const newUser = await User.create(user);
         res.status(201).json(newUser);
-    }catch(err){
+    } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
     }
@@ -68,14 +68,14 @@ router.post('/', authAdmin, async (req, res) => {
 
 router.put('/mine', authUser, async (req, res) => {
     try {
-        const {username, email, first_name, last_name, phone, address, city} = req.body;
+        const { username, email, first_name, last_name, phone, address, city } = req.body;
         let user = await User.findOne({
             where: {
                 id: req.user.id
             },
             attributes: { exclude: ['password'] }
         });
-        if(!user){
+        if (!user) {
             return res.json("Not found");
         }
         user.username = username;
@@ -86,8 +86,8 @@ router.put('/mine', authUser, async (req, res) => {
         user.address = address;
         user.city = city;
         user = await user.save();
-        res.status(200).json(user) ;
-    }catch(err){
+        res.status(200).json(user);
+    } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
     }
@@ -96,12 +96,12 @@ router.put('/mine', authUser, async (req, res) => {
 router.delete('/:id', authAdmin, async (req, res) => {
     try {
         const user = await User.findByPk(req.params.id);
-        if(!user){
+        if (!user) {
             return res.json("Not found");
         }
         await user.destroy()
         res.status(200).json({ message: 'User deleted!' });
-    }catch (err) {
+    } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
     }
@@ -110,12 +110,12 @@ router.delete('/:id', authAdmin, async (req, res) => {
 // login & signup for users
 router.post('/login', async (req, res) => {
     try {
-        const user = await User.findOne({where: {username: req.body.username}});
-        if (user){
+        const user = await User.findOne({ where: { username: req.body.username } });
+        if (user) {
             const isValid = await bcrypt.compareSync(req.body.password, user.password)
-            if (isValid){
+            if (isValid) {
                 const token = await jwt.sign(
-                    {id: user.id, role: user.role},
+                    { id: user.id, role: user.role },
                     process.env.JWT_SECRET
                 )
                 return res.json({
@@ -131,7 +131,7 @@ router.post('/login', async (req, res) => {
             status: 'error',
             message: 'the username or password do not match.'
         });
-    }catch(err){
+    } catch (err) {
         console.log(err)
         res.status(500).json({ error: 'Something went wrong' });
     }
@@ -139,7 +139,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-    try{
+    try {
         const user = {
             username: req.body.username,
             email: req.body.email,
@@ -152,18 +152,18 @@ router.post('/register', async (req, res) => {
         }
         const userExist = await User.findOne({
             where: {
-                [Op.and]: [
-                  { username: req.body.username },
-                  { email: req.body.email }
+                [Op.or]: [
+                    { username: req.body.username },
+                    { email: req.body.email }
                 ]
             }
         })
-        if(userExist){
+        if (userExist) {
             return res.status(409).json("This username or email already taken")
         }
         const newUser = await User.create(user);
         return res.status(201).json(newUser);
-    }catch(err){
+    } catch (err) {
         console.log(err);
         res.status(500).json({ error: 'Something went wrong' });
     }
