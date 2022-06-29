@@ -3,8 +3,6 @@ import axios from 'axios';
 import{useState,useEffect} from "react";
 
 
-
-
 const Register = () => {
 const [username, setUsername]=useState();
 const [email, setEmail]=useState();
@@ -43,10 +41,6 @@ console.log(token)
 
 
 },[form])
-
-
-
-
 
     return (
         <>
