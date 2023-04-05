@@ -1,0 +1,277 @@
+[33mcommit 4f856bd776d83f3e560791d9edde3c87694c16f5[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: 8eaed53 5898095
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Wed Apr 5 23:00:02 2023 +0200
+
+    Merge branch 'main' of https://github.com/FATEMASAYED25/shoes-store
+
+[33mcommit 8eaed5319888988f7cd79752fc9056ae2ce32de0[m
+Merge: f3da783 f671dd3
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Wed Apr 5 22:56:05 2023 +0200
+
+    Update homepage URL
+
+[33mcommit 589809577e3e726b01d4c1f1146ad8922d08c28e[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Thu Jun 30 01:09:11 2022 +0200
+
+    Update README file for backend.
+
+[33mcommit 1b7361245ca18209d490a27be60d9baf66b613b5[m
+Author: Fatema Sayed Metwaly <batasayed25@gmail.com>
+Date:   Wed Jun 29 19:50:36 2022 +0200
+
+    Update README.md
+
+[33mcommit f3da783770d3aed96f77fe98638d6ef040ff3517[m
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Wed Jun 29 19:35:52 2022 +0200
+
+    code adjustments
+
+[33mcommit f671dd371cd58ea6fd90b7e8424d6998e67747af[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Mon Jun 20 02:08:45 2022 +0200
+
+    change response for new user.
+
+[33mcommit e5a3070ed9f062cc9c01eaaedc7bb88bdb9bbd74[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Mon Jun 20 01:53:26 2022 +0200
+
+    update response for creating new user
+
+[33mcommit db07c509cad1e187df36b4b380c16bf81c3f5fde[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Sat Jun 18 15:33:24 2022 +0200
+
+    fix greeting
+
+[33mcommit ad02c513631ed681376da56fb2f94a7ffdd92e23[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Sat Jun 18 15:23:01 2022 +0200
+
+    user can update his informations
+
+[33mcommit 9931020baf572eaaeeb471980e76bbb74bed0fe1[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Sat Jun 18 14:17:24 2022 +0200
+
+    update login & register form & Nav
+
+[33mcommit ba96616145f55d92becee659bd2428339285f236[m
+Merge: 8e0ebe4 e7dd1fa
+Author: Fatema Sayed Metwaly <batasayed25@gmail.com>
+Date:   Fri Jun 17 09:13:40 2022 +0200
+
+    Merge pull request #9 from FATEMASAYED25/login
+    
+    Login
+
+[33mcommit 8e0ebe487bf6d75c228f57cfb0dc3511b961f600[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Fri Jun 17 04:14:27 2022 +0200
+
+    update auth in backend && update user info
+
+[33mcommit e7dd1fae61d183454e207ffe73e9697041606d64[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Fri Jun 17 00:38:22 2022 +0200
+
+    Fix 'Register' Functionality
+
+[33mcommit 55393d9a3c90b4e4922d5010054226d8103b083a[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Fri Jun 17 00:28:40 2022 +0200
+
+    Redirect to Homepage after Login
+
+[33mcommit 985a9dd48dcb771a425e738ffdef80532ed33685[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Fri Jun 17 00:24:21 2022 +0200
+
+    Fix 'Login' Functionality
+
+[33mcommit 67293c3b1fd3cb11247001d769678afcf8dc1967[m
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Thu Jun 16 22:51:45 2022 +0200
+
+    code adjustments
+
+[33mcommit 3521f9a363c84597047d63fecc9df9f81903530b[m
+Merge: 05b12c5 9db5977
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Thu Jun 16 22:39:35 2022 +0200
+
+    ok
+    
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 05b12c5f35bba02a0a45b42e32d3cb0dabaaa724[m
+Merge: 52f9665 5af6b33
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Thu Jun 16 22:39:22 2022 +0200
+
+    code adjustments
+
+[33mcommit 5af6b334f070b996c2ec10c4f62c65392cac353a[m[33m ([m[1;31morigin/final[m[33m)[m
+Author: Mustafa Khalaf <mustafakh7790@gmail.com>
+Date:   Thu Jun 16 22:36:14 2022 +0200
+
+    final
+
+[33mcommit 52f9665bf790537e91059b6743cb7cc59034d0a5[m
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Thu Jun 16 22:29:32 2022 +0200
+
+    code adjustments
+
+[33mcommit 9db597733b0a60fda24fdb3bee2c20efdaef2380[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Thu Jun 16 22:26:22 2022 +0200
+
+    Fix Conflict
+
+[33mcommit 08b36bb73b4cc64c20d48adda0a132d6e5a14819[m
+Merge: e37a6fd 4820239
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Thu Jun 16 19:22:41 2022 +0200
+
+    code adjustments
+
+[33mcommit e37a6fd330068fe491ee7fe9ee0c6aee23b8c29d[m
+Merge: 74765f4 457d317
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Thu Jun 16 18:30:11 2022 +0200
+
+    ok
+    Merge remote-tracking branch 'origin/main'
+
+[33mcommit 48202397c7eb58f56612f02d28160fe4f7ed445e[m[33m ([m[1;31morigin/api[m[33m)[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Thu Jun 16 18:27:19 2022 +0200
+
+    Use API Functions to fetch 'Product' by ID
+
+[33mcommit 74765f4a8c8486571d3dd62da223ff995b0f1303[m
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Thu Jun 16 18:21:52 2022 +0200
+
+    code adjustments
+
+[33mcommit d06709509c08a6cfe3708f319d08e7dbef30ac3a[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Thu Jun 16 18:05:56 2022 +0200
+
+    Use API Functions to fetch 'Categories' and 'Products'
+
+[33mcommit 457d3176ccc7fadd278f5be0710e25e9bbb5fff5[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Thu Jun 16 17:57:19 2022 +0200
+
+    display user info
+
+[33mcommit 37cc9f74ef1d76a0e76522dff4b98ad9cd2e674e[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Thu Jun 16 17:52:48 2022 +0200
+
+    Fix bug of 'Unique Key'
+
+[33mcommit ec8626489c1d727c5d417381816e817891ba0245[m
+Merge: e88c3a0 7707ccd
+Author: Fatema Sayed Metwaly <batasayed25@gmail.com>
+Date:   Thu Jun 16 17:25:22 2022 +0200
+
+    Merge pull request #6 from FATEMASAYED25/auth
+    
+    auth
+
+[33mcommit 7707ccd3b102261f135cd923cc9db5084c4ca49f[m
+Author: Mustafa Khalaf <mustafakh7790@gmail.com>
+Date:   Thu Jun 16 17:21:31 2022 +0200
+
+    auth
+
+[33mcommit e88c3a0e7228fb0d11ee674dce08e01189fd81ef[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Thu Jun 16 17:19:09 2022 +0200
+
+    Fix Style of Categories' Header
+
+[33mcommit f513ca8e064a9c7e207989e0a35a421022947e1b[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Thu Jun 16 17:09:11 2022 +0200
+
+    Add more details to user profile form
+
+[33mcommit b8492235008cfbcc4a10b553141837be6b9eb835[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Thu Jun 16 16:50:45 2022 +0200
+
+    Fix svg display
+
+[33mcommit 883e294923876649732196610830b378625973b8[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Thu Jun 16 14:52:50 2022 +0200
+
+    Fix style
+
+[33mcommit 4e400bb7ee8455ddbe736dbdf391dae6e797d659[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Thu Jun 16 14:31:28 2022 +0200
+
+    Fix buttons style
+
+[33mcommit 1dc025b83b25c7cdea05719812198132b0da3352[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Thu Jun 16 07:00:29 2022 +0200
+
+    fix delete product.
+
+[33mcommit 1dc0a2e44d80113e0ad7ccfebbb492dcc9e7b4ea[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Thu Jun 16 06:37:51 2022 +0200
+
+    admin add new product and delete one.
+
+[33mcommit d42292b12c56ac738b2269a5c60f29f7d6e7dd1d[m
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Wed Jun 15 22:03:03 2022 +0200
+
+    code adjustments
+
+[33mcommit f28c31e38be045b9b3c9512689c7099ac4f79a91[m
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Wed Jun 15 21:49:17 2022 +0200
+
+    add total number of products to shopping cart icon
+
+[33mcommit b4c724e553c66aa2c0dca53165d8448cd4dd847e[m
+Merge: 1479319 84380d3
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Wed Jun 15 21:36:57 2022 +0200
+
+    fix merging conflicts
+
+[33mcommit 147931909071c3e1d36b85da4ef88f4062c40fa5[m
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Wed Jun 15 20:40:51 2022 +0200
+
+    merge profile pranch which collect all api requests in one component
+
+[33mcommit 84380d3c1eecd76d3d7aefe9fa138e27c546d221[m[33m ([m[1;31morigin/profile[m[33m)[m
+Author: wewe15 <ahm.sami.271@gmail.com>
+Date:   Wed Jun 15 19:39:32 2022 +0200
+
+    add functions for user.
+
+[33mcommit f832d7f4353df2be77262030f0cad784bc0a5a60[m
+Author: sondossamii <sondos.sami.abuzeid@gmail.com>
+Date:   Wed Jun 15 18:37:00 2022 +0200
+
+    Fix images' height of Card
+
+[33mcommit a8824a672c49f6d62baf95d8c10703f2c13abc3f[m
+Author: FATEMASAYED25 <batasayed25@gmail.com>
+Date:   Wed Jun 15 17:02:42 
