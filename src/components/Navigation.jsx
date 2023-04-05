@@ -33,7 +33,7 @@ const Navigation = () => {
       <Container fluid>
         <Row className="d-flex justify-content-end align-items-center">
           <Col md={1} xs={3} className="mx-2 ">
-            <Link to="/home">
+            <Link to="/">
               <Image src={img4} className="img-fluid" alt="fourth" />
             </Link>
           </Col>
