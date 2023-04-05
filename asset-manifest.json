@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/shoes-store/static/css/main.38afa3c3.css",
+    "main.js": "/shoes-store/static/js/main.95fa3eda.js",
+    "static/media/sketcher brand.png": "/shoes-store/static/media/sketcher brand.c26b711a5f0d45141d9b.png",
+    "static/media/8.gif": "/shoes-store/static/media/8.e9096fbae65e5472dd29.gif",
+    "static/media/1.png": "/shoes-store/static/media/1.071606283d6dd146d9ee.png",
+    "static/media/3.png": "/shoes-store/static/media/3.dd7abafc07a89b146c05.png",
+    "static/media/7.png": "/shoes-store/static/media/7.310fd28a38a666e1a219.png",
+    "static/media/adidas brand.png": "/shoes-store/static/media/adidas brand.f7b6cb7f094ca317de46.png",
+    "static/media/4.png": "/shoes-store/static/media/4.7325405e7441d98dbfae.png",
+    "static/media/nike brand.png": "/shoes-store/static/media/nike brand.20ee2f4c80dfd956a302.png",
+    "static/media/puma prand.png": "/shoes-store/static/media/puma prand.588e39e5014a13ba6392.png",
+    "static/media/revicons.eot": "/shoes-store/static/media/revicons.a77de540a38981833f9e.eot",
+    "static/media/revicons.ttf": "/shoes-store/static/media/revicons.57fd05d4ae650374c8de.ttf",
+    "static/media/revicons.woff": "/shoes-store/static/media/revicons.e8746a624ed098489406.woff",
+    "index.html": "/shoes-store/index.html",
+    "main.38afa3c3.css.map": "/shoes-store/static/css/main.38afa3c3.css.map",
+    "main.95fa3eda.js.map": "/shoes-store/static/js/main.95fa3eda.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.38afa3c3.css",
+    "static/js/main.95fa3eda.js"
+  ]
+}
