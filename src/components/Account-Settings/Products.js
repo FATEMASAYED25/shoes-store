@@ -42,7 +42,7 @@ const Products = () => {
             </tr>
           </thead>
           <tbody>
-            {products &&
+            {
               products.map((product) => (
                 <tr key={product.id}>
                   <td>{product.name}</td>

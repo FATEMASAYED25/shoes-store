@@ -39,6 +39,7 @@ const AddProduct3 = () => {
     for (let i = 0; i < file.length; i++) {
       formData.append("images", file[i]);
     }
+  
     axios
       .post("https://backende-commerc.herokuapp.com/api/products", formData, {
         headers: {

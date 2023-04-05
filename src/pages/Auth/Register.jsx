@@ -1,75 +1,131 @@
-import React from 'react';
-import axios from 'axios';
-import{useState,useEffect} from "react";
-
+import React from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { createUser } from "../../api/API";
 
 const Register = () => {
-const [username, setUsername]=useState();
-const [email, setEmail]=useState();
-const [firstname, setFirstname]=useState();
-const [lastname, setLastname]=useState();
-const [password, setPassword]=useState();
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    username: "",
+    email: "",
+    first_name: "",
+    last_name: "",
+    password: "",
+    phone: "",
+    address: "",
+    city: "",
+  });
 
-const [phone, setPhone]=useState();
-const [address, setAddress]=useState();
-const [city, setCity]=useState();
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setUser((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      };
+    });
+  }
 
+  function onSubmit(e) {
+    e.preventDefault();
+    createUser(user).then(res => {
+      if (res){
+        navigate('/login');
+      }
+    })
+  }
 
-const [form, setForm]=useState();
+  return (
+    <>
+      <section className="form">
+        <label>username</label>
+        <input
+          type="text"
+          value={user.username}
+          name="username"
+          placeholder="username"
+          className="input"
+          onChange={handleChange}
+        />
+        <br />
+        <label>email</label>
+        <input
+          type="email"
+          value={user.email}
+          name="email"
+          placeholder="email"
+          className="input"
+          onChange={handleChange}
+        />
+        <br />
+        <label>firstname</label>
+        <input
+          type="text"
+          value={user.first_name}
+          name="first_name"
+          placeholder="firstname"
+          className="input"
+          onChange={handleChange}
+        />
+        <br />
+        <label>lastname</label>
+        <input
+          type="text"
+          value={user.last_name}
+          name="last_name"
+          placeholder="lastname"
+          className="input"
+          onChange={handleChange}
+        />
+        <br />
+        <label>password</label>
+        <input
+          type="password"
+          value={user.password}
+          name="password"
+          placeholder="password"
+          className="input"
+          onChange={handleChange}
+        />
+        <br />
+        <label>phone</label>
+        <input
+          type="tel"
+          name="phone"
+          value={user.phone}
+          placeholder="phone"
+          className="input"
+          onChange={handleChange}
+        />
+        <br />
+        <label>address</label>
+        <input
+          type="text"
+          name="address"
+          value={user.address}
+          placeholder="address"
+          className="input"
+          onChange={handleChange}
+        />
+        <br />
+        <label>city</label>
+        <input
+          type="text"
+          name="city"
+          value={user.city}
+          placeholder="city"
+          className="input"
+          onChange={handleChange}
+        />
+        <br />
+        <label>Enter Submit</label>
+        <button name="submit" className="submit" onClick={onSubmit}>
+          Submit
+        </button>
+        <br />
+      </section>
+    </>
+  );
+};
 
-
-const [token, setToken]=useState();
-
-
-
-useEffect(()=>{
-    console.log(form)
-    axios.post('https://backende-commerc.herokuapp.com/api/users/register', {username, email, firstname, lastname, password, phone, address, city},
-    {headers: {
-        'Content-Type': 'application/json'
-        }}
-        )
-        .then(function (response) {
-        setToken(response)
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
-
-console.log(token)
-
-
-
-},[form])
-
-    return (
-        <>
-        
-        <section className="form">
-
-            <label>username</label>
-                <input type="text" value={username} name="username" placeholder='username' className='input' onChange={(event)=>{event.preventDefault();   setUsername (event.target.value)}} /><br/>
-            <label>email</label>
-                <input type="email"   value={email} name="email" placeholder='email' className='input' onChange={(event)=>{event.preventDefault();   setEmail(event.target.value)}}/><br/>
-            <label>firstname</label>
-                <input type="text" value={firstname} name="firstname" placeholder='firstname'className='input' onChange={(event)=>{event.preventDefault();   setFirstname(event.target.value)}}/><br/>
-            <label>lastname</label>
-                <input type="text" value={lastname} name="lastname" placeholder='lastname' className='input' onChange={(event)=>{event.preventDefault();   setLastname(event.target.value)}}/><br/>
-            <label>password</label>
-                <input type="password" value={password} name="password" placeholder='password' className='input' onChange={(event)=>{event.preventDefault();   setPassword(event.target.value)}}/><br/>
-            <label>phone</label>
-                <input type="tel" name="phone" value={phone} placeholder='phone'className='input' onChange={(event)=>{event.preventDefault();   setPhone(event.target.value)}}/><br/>
-            <label>address</label>
-                <input type="text" name="address" value={address} placeholder='address' className='input' onChange={(event)=>{event.preventDefault();   setAddress(event.target.value)}}/><br/>
-                <label>city</label>
-                <input type="text" name="city" value={city} placeholder='city' className='input' onChange={(event)=>{event.preventDefault();   setCity(event.target.value)}}/><br/>
-                <label>Enter Submit</label>
-                <button  name='submit'  className='submit' onClick={(event)=>{event.preventDefault();   setForm({username, email, firstname, lastname, password, phone, address, city})}} > Submit </button><br/>
-        </section>
-        
-        </>
-        )
-
-}
-
-export default Register
+export default Register;

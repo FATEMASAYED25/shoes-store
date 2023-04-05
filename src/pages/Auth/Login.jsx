@@ -1,52 +1,69 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-
-
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from "../../api/auth";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
 
-    const [username,setUsername]=useState();
-    const [password,setPassword]=useState();
-    const [form, setForm]=useState();
-    const [token, setToken]=useState()
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setUser((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      };
+    });
+  }
 
-useEffect(()=>{
-    axios.post('https://backende-commerc.herokuapp.com/api/users/login', {username, password},
-    {headers: {
-        'Content-Type': 'application/json'
-        }}
-        )
-        .then(function (response) {
-        setToken(response)
-        localStorage.setItem("token",JSON.stringify(response.data))
-        return response.data
+  function onSubmit(e) {
+    e.preventDefault();
+    login(user).then(res => {
+      if (res.token){
+        navigate('/home');
+        window.location.reload(true);
+      }
+    })
+  }
 
-        })
-        .catch(function (error) {
-        console.log(error);
-        });
+  return (
+    <>
+      <Link to="/Register">
+        <button id="link">Register, If you don't have an account</button>
+      </Link>
 
-},[form])
-
-    return (
-<>
-<Link to="/Register"><button id='link'>Register, If you don't have an account</button></Link>
-
-    <section className="form">
-
+      <section className="form">
         <label>Username</label>
-        <input type="text" name="username" placeholder='username' className='input' value={username} onChange={(event)=>{event.preventDefault(); setUsername(event.target.value)}}/><br/>
+        <input
+          type="text"
+          name="username"
+          placeholder="username"
+          className="input"
+          value={user.username}
+          onChange={handleChange}
+        />
+        <br />
         <label>Password</label>
-        <input type="password" name='password' placeholder='Enter your password' className='input' value={password}  onChange={(event)=>{event.preventDefault(); setPassword(event.target.value)}}/><br/>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          className="input"
+          value={user.password}
+          onChange={handleChange}
+        />
+        <br />
         <label>Enter Submit</label>
-        <button className="submit" onClick={(event)=>{event.preventDefault(); setForm({username, password})}}>Submit</button><br/>
-    </section>
-</>
-    )
-}
+        <button className="submit" onClick={onSubmit}>
+          Submit
+        </button>
+        <br />
+      </section>
+    </>
+  );
+};
 
-export default Login
+export default Login;
