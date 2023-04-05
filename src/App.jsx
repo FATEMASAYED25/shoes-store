@@ -29,7 +29,6 @@ function App() {
     <Navigation />
     <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/home" element={<Home />} />
     <Route path="/Contact" element={<Contact />} />
     <Route path="/Adress" element={<Adress />} />
     <Route path="/News" element={<News />} />
